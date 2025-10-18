@@ -12,14 +12,14 @@ import { LanguageService } from '../../services/language.service';
     <section class="contact-hero">
       <div class="hero-content">
         <h1 class="hero-title">{{ t().contact.title }}</h1>
-        <p class="hero-subtitle">"We can't wait to make awesomeness with you."</p>
+        <p class="hero-subtitle">We can't wait to make awesomeness with you.</p>
       </div>
     </section>
 
     <section class="contact-form-section" appScrollAnimation animationClass="fade-in-up">
       <div class="container">
-        <h2 class="form-title">Feel Free to Get in Touch</h2>
-        <p class="form-subtitle">Write a Message</p>
+        <h2 class="form-title">Get in Touch</h2>
+        <p class="form-subtitle">Fill out the form below and we'll get back to you shortly.</p>
 
         <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm" aria-label="Contact form">
           <div class="error-message" *ngIf="showError" role="alert">
@@ -177,19 +177,35 @@ import { LanguageService } from '../../services/language.service';
         <h2 class="info-title">Connect with Us</h2>
         <div class="info-grid">
           <div class="info-item">
-            <span class="info-icon" aria-hidden="true">📞</span>
+            <div class="icon-wrapper phone">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
             <div class="info-content">
-              <h3>{{ t().footer.phoneNumber }}</h3>
+              <h3>Phone Number</h3>
+              <p>{{ t().footer.phoneNumber }}</p>
             </div>
           </div>
           <div class="info-item">
-            <span class="info-icon" aria-hidden="true">✉️</span>
+            <div class="icon-wrapper email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
             <div class="info-content">
-              <h3>{{ t().footer.email }}</h3>
+              <h3>Email</h3>
+              <p>{{ t().footer.email }}</p>
             </div>
           </div>
           <div class="info-item">
-            <span class="info-icon" aria-hidden="true">📍</span>
+            <div class="icon-wrapper location">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
             <div class="info-content">
               <h3>Office Location</h3>
               <p>Whitehall St, Somerville, Florida, USA</p>
@@ -201,61 +217,65 @@ import { LanguageService } from '../../services/language.service';
   `,
   styles: [`
     .contact-hero {
-      background: linear-gradient(rgba(41, 82, 204, 0.9), rgba(30, 58, 138, 0.9)),
-                  url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="50" x="10" y="0" fill="%23ffffff" opacity="0.1"/></svg>');
+      background: linear-gradient(135deg, #1e3a8a 0%, #2952cc 100%);
       color: white;
-      padding: 120px 24px 80px;
+      padding: 140px 24px 100px;
       text-align: center;
     }
 
     .hero-content {
-      max-width: 800px;
+      max-width: 700px;
       margin: 0 auto;
     }
 
     .hero-title {
-      font-size: 48px;
-      font-weight: 400;
-      margin: 0 0 16px 0;
-      letter-spacing: -0.5px;
+      font-size: 52px;
+      font-weight: 300;
+      margin: 0 0 20px 0;
+      letter-spacing: -1px;
     }
 
     .hero-subtitle {
-      font-size: 18px;
-      opacity: 0.95;
+      font-size: 20px;
+      opacity: 0.9;
       margin: 0;
+      font-weight: 300;
+      line-height: 1.6;
     }
 
     .contact-form-section {
-      padding: 80px 24px;
-      background: white;
+      padding: 100px 24px;
+      background: #ffffff;
     }
 
     .container {
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
     }
 
     .form-title {
-      font-size: 32px;
-      font-weight: 400;
+      font-size: 36px;
+      font-weight: 300;
       text-align: center;
-      margin: 0 0 8px 0;
-      color: #2952cc;
+      margin: 0 0 12px 0;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
     }
 
     .form-subtitle {
-      font-size: 18px;
+      font-size: 16px;
       text-align: center;
-      margin: 0 0 40px 0;
-      color: #4a4a4a;
+      margin: 0 0 50px 0;
+      color: #6b7280;
+      font-weight: 400;
     }
 
     .contact-form {
       background: white;
-      padding: 40px;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
+      padding: 50px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
     .form-row {
@@ -279,14 +299,15 @@ import { LanguageService } from '../../services/language.service';
 
     input {
       width: 100%;
-      padding: 16px 20px;
-      border: none;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
       border-radius: 8px;
-      font-size: 16px;
-      background: #f0f3ff;
-      color: #6b7280;
-      transition: all 0.3s;
+      font-size: 15px;
+      background: #ffffff;
+      color: #1a1a1a;
+      transition: all 0.2s;
       box-sizing: border-box;
+      height: 52px;
     }
 
     input::placeholder {
@@ -295,48 +316,63 @@ import { LanguageService } from '../../services/language.service';
 
     input:focus {
       outline: none;
-      background: #e5e9ff;
-      box-shadow: 0 0 0 3px rgba(41, 82, 204, 0.1);
+      border-color: #2952cc;
+      box-shadow: 0 0 0 3px rgba(41, 82, 204, 0.08);
     }
 
     .phone-input-wrapper {
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #f0f3ff;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
       border-radius: 8px;
-      padding-right: 20px;
+      padding: 0 16px;
+      transition: all 0.2s;
+      height: 52px;
+    }
+
+    .phone-input-wrapper:focus-within {
+      border-color: #2952cc;
+      box-shadow: 0 0 0 3px rgba(41, 82, 204, 0.08);
     }
 
     .country-selector {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       background: none;
       border: none;
-      padding: 16px 12px;
+      padding: 0;
       cursor: pointer;
-      color: #6b7280;
-      font-size: 14px;
+      color: #1a1a1a;
+      font-size: 15px;
+      height: 100%;
+      min-width: 70px;
     }
 
     .flag {
       font-size: 20px;
+      line-height: 1;
     }
 
     .arrow {
       font-size: 10px;
+      color: #6b7280;
     }
 
     .phone-input-wrapper input {
       background: transparent;
-      padding: 16px 0;
+      padding: 0;
       flex: 1;
+      border: none;
+      height: 100%;
     }
 
     .phone-input-wrapper input:focus {
       background: transparent;
       box-shadow: none;
+      border: none;
     }
 
     .country-selector-container {
@@ -470,18 +506,19 @@ import { LanguageService } from '../../services/language.service';
       background: #2952cc;
       color: white;
       border: none;
-      padding: 14px 32px;
-      font-size: 14px;
+      padding: 16px 32px;
+      font-size: 15px;
       font-weight: 500;
       cursor: pointer;
-      border-radius: 4px;
-      transition: all 0.3s;
+      border-radius: 8px;
+      transition: all 0.2s;
+      margin-top: 8px;
     }
 
     .submit-btn:hover {
       background: #1e3a8a;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(41, 82, 204, 0.3);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(41, 82, 204, 0.25);
     }
 
     .submit-btn:focus-visible {
@@ -490,64 +527,130 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .contact-info-section {
-      padding: 80px 24px;
-      background: #f8f9fa;
+      padding: 100px 24px;
+      background: #f9fafb;
     }
 
     .info-title {
-      font-size: 32px;
-      font-weight: 400;
+      font-size: 36px;
+      font-weight: 300;
       text-align: center;
-      margin: 0 0 48px 0;
+      margin: 0 0 60px 0;
       color: #1a1a1a;
+      letter-spacing: -0.5px;
     }
 
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 32px;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
     .info-item {
       text-align: center;
-      padding: 24px;
+      padding: 48px 32px;
       background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .info-icon {
-      font-size: 32px;
-      display: block;
-      margin-bottom: 16px;
+    .info-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+      border-color: #d1d5db;
+    }
+
+    .icon-wrapper {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      transition: all 0.3s;
+    }
+
+    .icon-wrapper svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .icon-wrapper.phone {
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      color: #dc2626;
+    }
+
+    .icon-wrapper.email {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      color: #2563eb;
+    }
+
+    .icon-wrapper.location {
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      color: #16a34a;
+    }
+
+    .info-item:hover .icon-wrapper {
+      transform: scale(1.1);
+    }
+
+    .info-content {
+      width: 100%;
     }
 
     .info-content h3 {
-      font-size: 18px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 600;
       margin: 0 0 8px 0;
       color: #1a1a1a;
+      letter-spacing: -0.2px;
     }
 
     .info-content p {
-      font-size: 14px;
-      color: #4a4a4a;
+      font-size: 15px;
+      color: #6b7280;
       margin: 0;
+      line-height: 1.6;
     }
 
     @media (max-width: 768px) {
+      .contact-hero {
+        padding: 100px 24px 70px;
+      }
+
       .hero-title {
         font-size: 36px;
       }
 
+      .hero-subtitle {
+        font-size: 17px;
+      }
+
+      .contact-form-section {
+        padding: 60px 24px;
+      }
+
       .contact-form {
-        padding: 24px;
+        padding: 32px 24px;
       }
 
       .form-row {
         grid-template-columns: 1fr;
+      }
+
+      .info-title {
+        font-size: 28px;
+      }
+
+      .contact-info-section {
+        padding: 60px 24px;
       }
     }
   `]

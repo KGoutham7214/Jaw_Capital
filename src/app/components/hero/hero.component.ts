@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { ScrollAnimationDirective } from '../../directives/scroll-animation.directive';
 import { LanguageService } from '../../services/language.service';
 
@@ -17,7 +18,7 @@ import { LanguageService } from '../../services/language.service';
         <p class="subtitle" appScrollAnimation animationClass="fade-in-up" [animationDelay]="100">
           {{ t().hero.subtitle }}
         </p>
-        <button class="cta-button" type="button" appScrollAnimation animationClass="fade-in-up" [animationDelay]="200">{{ t().hero.ctaButton }}</button>
+        <button class="cta-button" type="button" (click)="navigateToContact()" appScrollAnimation animationClass="fade-in-up" [animationDelay]="200">Contact Us</button>
       </div>
     </section>
   `,
@@ -57,7 +58,7 @@ import { LanguageService } from '../../services/language.service';
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
-      border-radius: 4px;
+      border-radius: 8px;
       transition: all 0.3s;
     }
 
@@ -86,5 +87,10 @@ import { LanguageService } from '../../services/language.service';
 })
 export class HeroComponent {
   private languageService = inject(LanguageService);
+  private router = inject(Router);
   t = this.languageService.getTranslations.bind(this.languageService);
+
+  navigateToContact() {
+    this.router.navigate(['/contact']);
+  }
 }
