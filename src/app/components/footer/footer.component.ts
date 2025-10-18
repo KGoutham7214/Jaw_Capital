@@ -15,38 +15,20 @@ import { LanguageService } from '../../services/language.service';
             <p class="tagline">
               {{ t().footer.tagline }}
             </p>
-            <nav class="social-links" [attr.aria-label]="t().ariaLabels.socialMedia">
-              <a href="#" [attr.aria-label]="t().ariaLabels.linkedin">in</a>
-              <a href="#" [attr.aria-label]="t().ariaLabels.facebook">f</a>
-              <a href="#" [attr.aria-label]="t().ariaLabels.twitter">𝕏</a>
-              <a href="#" [attr.aria-label]="t().ariaLabels.instagram">📷</a>
-            </nav>
           </div>
 
           <nav class="footer-links" aria-label="Footer navigation">
-            <div class="link-group">
-              <a href="#what-we-do"><span aria-hidden="true">↗ </span>{{ t().header.whatWeDo.toUpperCase() }}</a>
-            </div>
-            <div class="link-group">
-              <a href="#about"><span aria-hidden="true">↗ </span>{{ t().header.aboutUs.toUpperCase() }}</a>
-            </div>
-            <div class="link-group">
-              <a href="#results"><span aria-hidden="true">↗ </span>{{ t().header.results.toUpperCase() }}</a>
-            </div>
-            <div class="link-group">
-              <a href="#contact"><span aria-hidden="true">↗ </span>{{ t().header.contactUs.toUpperCase() }}</a>
-            </div>
+            <h3 class="footer-heading">Navigation</h3>
+            <a href="#what-we-do">{{ t().header.whatWeDo }}</a>
+            <a href="#about">{{ t().header.aboutUs }}</a>
+            <a href="#results">{{ t().header.results }}</a>
+            <a href="#contact">{{ t().header.contactUs }}</a>
           </nav>
 
           <div class="footer-contact">
-            <div class="contact-item">
-              <span class="icon" aria-hidden="true">📞</span>
-              <span>{{ t().footer.phoneNumber }}</span>
-            </div>
-            <div class="contact-item">
-              <span class="icon" aria-hidden="true">✉️</span>
-              <span>{{ t().footer.email }}</span>
-            </div>
+            <h3 class="footer-heading">Contact</h3>
+            <a href="tel:+1234567890" class="contact-link">{{ t().footer.phoneNumber }}</a>
+            <a href="mailto:info@jaw.com" class="contact-link">{{ t().footer.email }}</a>
           </div>
         </div>
 
@@ -58,9 +40,9 @@ import { LanguageService } from '../../services/language.service';
   `,
   styles: [`
     .footer {
-      background: #1e3a8a;
+      background: #0f172a;
       color: white;
-      padding: 60px 24px 24px;
+      padding: 80px 24px 32px;
     }
 
     .container {
@@ -71,8 +53,10 @@ import { LanguageService } from '../../services/language.service';
     .footer-content {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 48px;
+      gap: 80px;
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .footer-section {
@@ -82,101 +66,104 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .logo {
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: 0.5px;
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
     }
 
     .tagline {
-      font-size: 14px;
-      line-height: 1.6;
-      opacity: 0.9;
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.7);
       margin: 0;
+      max-width: 350px;
     }
 
-    .social-links {
-      display: flex;
-      gap: 16px;
-      margin-top: 8px;
-    }
-
-    .social-links a {
-      width: 32px;
-      height: 32px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-
-    .social-links a:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    .social-links a:focus-visible,
-    .link-group a:focus-visible {
-      outline: 2px solid white;
-      outline-offset: 4px;
-      border-radius: 4px;
+    .footer-heading {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin: 0 0 20px 0;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .footer-links {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
     }
 
-    .link-group a {
-      color: white;
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
       text-decoration: none;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      transition: opacity 0.3s;
+      font-size: 15px;
+      font-weight: 400;
+      transition: color 0.3s;
     }
 
-    .link-group a:hover {
-      opacity: 0.8;
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-links a:focus-visible,
+    .contact-link:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 4px;
+      border-radius: 2px;
     }
 
     .footer-contact {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
     }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
+    .contact-link {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s;
     }
 
-    .icon {
-      font-size: 16px;
+    .contact-link:hover {
+      color: white;
     }
 
     .footer-bottom {
-      padding-top: 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 32px;
     }
 
     .footer-bottom p {
-      font-size: 12px;
-      opacity: 0.7;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
       margin: 0;
       text-align: center;
+      font-weight: 400;
+    }
+
+    @media (max-width: 968px) {
+      .footer-content {
+        grid-template-columns: 2fr 1fr;
+        gap: 60px;
+      }
     }
 
     @media (max-width: 768px) {
+      .footer {
+        padding: 60px 24px 32px;
+      }
+
       .footer-content {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 40px;
+        margin-bottom: 40px;
+        padding-bottom: 32px;
+      }
+
+      .tagline {
+        max-width: 100%;
       }
     }
   `]
