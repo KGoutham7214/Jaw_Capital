@@ -65,7 +65,6 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
     .what-we-do-page {
       background: white;
       padding: 120px 24px 80px;
-      min-height: calc(100vh - 200px);
     }
 
     .container {
