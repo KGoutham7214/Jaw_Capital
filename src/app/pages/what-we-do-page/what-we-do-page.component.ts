@@ -65,11 +65,12 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
     .what-we-do-page {
       background: white;
       padding: 120px 24px 80px;
+      min-height: calc(100vh - 200px);
     }
 
     .container {
-      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 40px;
     }
 
     .content-grid {
@@ -211,7 +212,7 @@ export class WhatWeDoPageComponent {
 
   carouselImages = [
     { label: 'Office Building', src: 'assets/what-we-do/building.jpg' },
-    { label: 'Conference Room', src: 'assets/what-we-do/conf_gem.png' },
+    { label: 'Conference Room', src: 'assets/what-we-do/conference.jpg' },
     { label: 'Satellite', src: 'assets/what-we-do/satellite.jpg' }
   ];
 

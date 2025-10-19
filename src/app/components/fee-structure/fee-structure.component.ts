@@ -35,19 +35,19 @@ import { CommonModule } from '@angular/common';
     }
 
     .container {
-      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 80px;
     }
 
     .content-grid {
       display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 60px;
+      grid-template-columns: minmax(250px, 400px) 1fr;
+      gap: 80px;
       align-items: start;
     }
 
     .section-title {
-      font-size: 32px;
+      font-size: clamp(28px, 3vw, 48px);
       font-weight: 400;
       margin: 0;
       color: white;
@@ -60,7 +60,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .fee-text {
-      font-size: 14px;
+      font-size: clamp(14px, 1.2vw, 18px);
       line-height: 1.8;
       margin: 0;
       opacity: 0.95;
@@ -74,12 +74,8 @@ import { CommonModule } from '@angular/common';
     }
 
     @media (max-width: 768px) {
-      .section-title {
-        font-size: 28px;
-      }
-
-      .fee-text {
-        font-size: 15px;
+      .container {
+        padding: 0 24px;
       }
     }
   `]

@@ -23,32 +23,27 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .container {
-      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 80px;
     }
 
     .section-title {
-      font-size: 32px;
+      font-size: clamp(28px, 3vw, 48px);
       font-weight: 400;
-      margin: 0 0 24px 0;
+      margin: 0 0 32px 0;
       color: #1a1a1a;
     }
 
     .description {
-      font-size: 16px;
+      font-size: clamp(16px, 1.3vw, 20px);
       line-height: 1.8;
       color: #4a4a4a;
       margin: 0;
-      max-width: 900px;
     }
 
     @media (max-width: 768px) {
-      .section-title {
-        font-size: 28px;
-      }
-
-      .description {
-        font-size: 15px;
+      .container {
+        padding: 0 24px;
       }
     }
   `]

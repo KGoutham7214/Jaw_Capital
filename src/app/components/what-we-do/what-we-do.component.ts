@@ -27,38 +27,33 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .container {
-      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 80px;
     }
 
     .section-title {
-      font-size: 28px;
+      font-size: clamp(24px, 2.5vw, 42px);
       font-weight: 400;
-      margin: 0 0 24px 0;
+      margin: 0 0 32px 0;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
 
     .arrow {
-      font-size: 24px;
+      font-size: clamp(20px, 2vw, 32px);
     }
 
     .description {
-      font-size: 16px;
+      font-size: clamp(16px, 1.3vw, 20px);
       line-height: 1.8;
       margin: 0;
-      max-width: 900px;
       opacity: 0.95;
     }
 
     @media (max-width: 768px) {
-      .section-title {
-        font-size: 24px;
-      }
-
-      .description {
-        font-size: 15px;
+      .container {
+        padding: 0 24px;
       }
     }
   `]

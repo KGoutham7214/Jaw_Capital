@@ -32,33 +32,32 @@ import { RouterModule } from '@angular/router';
     }
 
     .container {
-      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 80px;
     }
 
     .content {
       text-align: left;
-      max-width: 800px;
     }
 
     .section-title {
-      font-size: 32px;
+      font-size: clamp(28px, 3vw, 48px);
       font-weight: 400;
-      margin: 0 0 8px 0;
+      margin: 0 0 12px 0;
       color: white;
     }
 
     .subtitle {
-      font-size: 20px;
+      font-size: clamp(18px, 1.8vw, 28px);
       font-weight: 500;
-      margin: 0 0 16px 0;
+      margin: 0 0 24px 0;
       opacity: 0.95;
     }
 
     .description {
-      font-size: 14px;
+      font-size: clamp(14px, 1.2vw, 18px);
       line-height: 1.8;
-      margin: 0 0 32px 0;
+      margin: 0 0 40px 0;
       opacity: 0.9;
     }
 
@@ -66,15 +65,15 @@ import { RouterModule } from '@angular/router';
       background: white;
       color: #2952cc;
       border: none;
-      padding: 14px 32px;
-      font-size: 14px;
+      padding: 16px 40px;
+      font-size: clamp(14px, 1.2vw, 18px);
       font-weight: 500;
       cursor: pointer;
       border-radius: 24px;
       transition: all 0.3s;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .contact-btn:hover {
@@ -97,16 +96,8 @@ import { RouterModule } from '@angular/router';
     }
 
     @media (max-width: 768px) {
-      .section-title {
-        font-size: 28px;
-      }
-
-      .subtitle {
-        font-size: 18px;
-      }
-
-      .description {
-        font-size: 15px;
+      .container {
+        padding: 0 24px;
       }
     }
   `]

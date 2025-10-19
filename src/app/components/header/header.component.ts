@@ -100,9 +100,8 @@ import { LanguageService, Language } from '../../services/language.service';
     }
 
     .container {
-      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -110,7 +109,7 @@ import { LanguageService, Language } from '../../services/language.service';
 
     .logo {
       font-weight: 700;
-      font-size: 20px;
+      font-size: clamp(18px, 1.5vw, 24px);
       letter-spacing: 0.5px;
       text-decoration: none;
       color: #1a1a1a;
@@ -123,13 +122,13 @@ import { LanguageService, Language } from '../../services/language.service';
 
     .nav {
       display: flex;
-      gap: 32px;
+      gap: clamp(24px, 3vw, 48px);
     }
 
     .nav a {
       color: #1a1a1a;
       text-decoration: none;
-      font-size: 14px;
+      font-size: clamp(13px, 1.1vw, 16px);
       transition: color 0.3s;
     }
 
@@ -148,7 +147,7 @@ import { LanguageService, Language } from '../../services/language.service';
     }
 
     .language-btn {
-      font-size: 14px;
+      font-size: clamp(13px, 1.1vw, 16px);
       font-weight: 500;
       cursor: pointer;
       display: flex;
@@ -158,9 +157,9 @@ import { LanguageService, Language } from '../../services/language.service';
       border: 1px solid #d0d0d0;
       color: inherit;
       transition: all 0.3s;
-      padding: 8px 16px;
+      padding: 10px 18px;
       border-radius: 4px;
-      min-width: 80px;
+      min-width: 90px;
       justify-content: space-between;
     }
 
@@ -277,6 +276,10 @@ import { LanguageService, Language } from '../../services/language.service';
     }
 
     @media (max-width: 768px) {
+      .container {
+        padding: 0 24px;
+      }
+
       .mobile-menu-btn {
         display: block;
       }

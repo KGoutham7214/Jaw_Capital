@@ -38,14 +38,14 @@ import { RouterModule } from '@angular/router';
     }
 
     .container {
-      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 80px;
     }
 
     .section-title {
-      font-size: 32px;
+      font-size: clamp(28px, 3vw, 48px);
       font-weight: 400;
-      margin: 0 0 32px 0;
+      margin: 0 0 40px 0;
       color: #1a1a1a;
     }
 
@@ -54,7 +54,7 @@ import { RouterModule } from '@angular/router';
     }
 
     .intro-text {
-      font-size: 16px;
+      font-size: clamp(16px, 1.4vw, 22px);
       line-height: 1.8;
       margin: 0;
       color: #1a1a1a;
@@ -62,7 +62,7 @@ import { RouterModule } from '@angular/router';
     }
 
     .description {
-      font-size: 14px;
+      font-size: clamp(14px, 1.2vw, 18px);
       line-height: 1.8;
       margin: 0;
       color: #4a4a4a;
@@ -77,8 +77,8 @@ import { RouterModule } from '@angular/router';
       background: #2952cc;
       color: white;
       border: none;
-      padding: 14px 48px;
-      font-size: 14px;
+      padding: 16px 56px;
+      font-size: clamp(14px, 1.2vw, 18px);
       font-weight: 500;
       cursor: pointer;
       border-radius: 24px;
@@ -97,16 +97,8 @@ import { RouterModule } from '@angular/router';
     }
 
     @media (max-width: 768px) {
-      .section-title {
-        font-size: 28px;
-      }
-
-      .intro-text {
-        font-size: 15px;
-      }
-
-      .description {
-        font-size: 14px;
+      .container {
+        padding: 0 24px;
       }
     }
   `]

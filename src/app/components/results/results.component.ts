@@ -82,22 +82,21 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .container {
-      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 80px;
     }
 
     .section-title {
-      font-size: 32px;
+      font-size: clamp(28px, 3vw, 48px);
       font-weight: 400;
-      margin: 0 0 16px 0;
+      margin: 0 0 24px 0;
       color: #1a1a1a;
     }
 
     .subtitle {
-      font-size: 14px;
+      font-size: clamp(14px, 1.2vw, 18px);
       color: #4a4a4a;
-      margin: 0 0 48px 0;
-      max-width: 700px;
+      margin: 0 0 56px 0;
     }
 
     .timeline {
@@ -120,8 +119,8 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .image-placeholder {
-      width: 120px;
-      height: 120px;
+      width: clamp(120px, 10vw, 160px);
+      height: clamp(120px, 10vw, 160px);
       background: #f5f7fa;
       border-radius: 8px;
       display: flex;
@@ -133,8 +132,8 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .image-placeholder.expanded-image {
-      width: 140px;
-      height: 140px;
+      width: clamp(140px, 11vw, 180px);
+      height: clamp(140px, 11vw, 180px);
     }
 
     .chart-svg {
@@ -155,14 +154,14 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .year {
-      font-size: 32px;
+      font-size: clamp(28px, 2.5vw, 42px);
       font-weight: 400;
       color: #1a1a1a;
-      margin: 0 0 4px 0;
+      margin: 0 0 8px 0;
     }
 
     .category {
-      font-size: 16px;
+      font-size: clamp(14px, 1.2vw, 20px);
       color: #1a1a1a;
       margin: 0;
     }
@@ -236,32 +235,18 @@ import { LanguageService } from '../../services/language.service';
       margin: 0;
       flex: 1;
       color: #4a4a4a;
-      font-size: 14px;
+      font-size: clamp(14px, 1.1vw, 17px);
       line-height: 1.6;
     }
 
     @media (max-width: 768px) {
+      .container {
+        padding: 0 24px;
+      }
+
       .timeline-header {
         gap: 16px;
         padding: 20px 0;
-      }
-
-      .image-placeholder {
-        width: 80px;
-        height: 80px;
-      }
-
-      .image-placeholder.expanded-image {
-        width: 100px;
-        height: 100px;
-      }
-
-      .year {
-        font-size: 24px;
-      }
-
-      .category {
-        font-size: 14px;
       }
 
       .details {
