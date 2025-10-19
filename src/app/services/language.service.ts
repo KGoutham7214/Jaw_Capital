@@ -74,7 +74,7 @@ export class LanguageService {
       hero: {
         title: 'Disciplined Trading\nQuantified Results',
         subtitle: '"Built on over a decade of independent active trading and quantitative precision."',
-        ctaButton: 'CTA Button'
+        ctaButton: 'Contact us'
       },
       whatWeDo: {
         title: 'What We Do',
@@ -128,7 +128,7 @@ export class LanguageService {
       hero: {
         title: 'Trading Disciplinado\nResultados Cuantificados',
         subtitle: '"Construido sobre más de una década de trading activo independiente y precisión cuantitativa."',
-        ctaButton: 'Botón CTA'
+        ctaButton: 'Contáctenos'
       },
       whatWeDo: {
         title: 'Qué Hacemos',

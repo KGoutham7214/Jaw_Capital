@@ -63,13 +63,27 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
   `,
   styles: [`
     .what-we-do-page {
-      background: white;
+      background: linear-gradient(rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.97)), url('https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
       padding: 120px 24px 80px;
+      position: relative;
+    }
+
+    .what-we-do-page::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(102, 126, 234, 0.05) 0%, transparent 50%);
+      pointer-events: none;
     }
 
     .container {
       margin: 0 auto;
       padding: 0 40px;
+      position: relative;
+      z-index: 1;
     }
 
     .content-grid {
@@ -119,6 +133,7 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
       height: 400px;
       overflow: hidden;
       border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
 
     .carousel-image {
@@ -211,7 +226,7 @@ export class WhatWeDoPageComponent {
 
   carouselImages = [
     { label: 'Office Building', src: 'assets/what-we-do/building.jpg' },
-    { label: 'Conference Room', src: 'assets/what-we-do/conference.jpg' },
+    { label: 'Conference Room', src: 'assets/what-we-do/conf_gem.png' },
     { label: 'Satellite', src: 'assets/what-we-do/satellite.jpg' }
   ];
 

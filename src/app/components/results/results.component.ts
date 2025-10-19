@@ -1,25 +1,29 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../services/language.service';
+import { ScrollAnimationDirective } from '../../directives/scroll-animation.directive';
 
 @Component({
   selector: 'app-results',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollAnimationDirective],
   template: `
     <section id="results" class="results">
       <div class="container">
-        <h2 class="section-title">{{ t().results.title }}</h2>
-        <p class="subtitle">
+        <h2 class="section-title" appScrollAnimation animationClass="fade-in-up">{{ t().results.title }}</h2>
+        <p class="subtitle" appScrollAnimation animationClass="fade-in-up" [animationDelay]="100">
           Our system is built around flexibility. By using a mix of proven strategies, technical indicators, and a hedge position.
         </p>
 
         <div class="timeline" role="list">
           <div
-            *ngFor="let item of timelineItems"
+            *ngFor="let item of timelineItems; let i = index"
             class="timeline-item"
             [class.expanded]="item.expanded"
             role="listitem"
+            appScrollAnimation
+            animationClass="fade-in-up"
+            [animationDelay]="200 + (i * 100)"
           >
             <div class="timeline-header">
               <div
@@ -27,21 +31,8 @@ import { LanguageService } from '../../services/language.service';
                 [class.expanded-image]="item.expanded"
                 role="img"
                 [attr.aria-label]="'Chart for ' + item.year"
+                [style.background-image]="'url(' + item.image + ')'"
               >
-                <svg
-                  width="100%"
-                  height="100%"
-                  viewBox="0 0 120 120"
-                  aria-hidden="true"
-                  class="chart-svg"
-                >
-                  <rect width="120" height="120" fill="#b8c5e0" rx="8"/>
-                  <g transform="translate(30, 60)">
-                    <rect x="0" y="10" width="15" height="30" fill="white" opacity="0.6"/>
-                    <rect x="20" y="20" width="15" height="20" fill="white" opacity="0.6"/>
-                    <rect x="40" y="5" width="15" height="35" fill="white" opacity="0.6"/>
-                  </g>
-                </svg>
               </div>
 
               <div class="timeline-content" (click)="toggleExpand(item)">
@@ -106,8 +97,15 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .timeline-item {
-      border-bottom: 1px solid #e0e0e0;
       transition: all 0.3s;
+      background: white;
+      margin-bottom: 8px;
+      border-radius: 8px;
+    }
+
+    .timeline-item:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transform: translateX(4px);
     }
 
     .timeline-header {
@@ -121,7 +119,9 @@ import { LanguageService } from '../../services/language.service';
     .image-placeholder {
       width: clamp(120px, 10vw, 160px);
       height: clamp(120px, 10vw, 160px);
-      background: #f5f7fa;
+      background: linear-gradient(135deg, rgba(41, 82, 204, 0.1) 0%, rgba(30, 58, 138, 0.1) 100%);
+      background-size: cover;
+      background-position: center;
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -129,11 +129,18 @@ import { LanguageService } from '../../services/language.service';
       flex-shrink: 0;
       transition: all 0.4s ease;
       overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline-item:hover .image-placeholder {
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
     }
 
     .image-placeholder.expanded-image {
       width: clamp(140px, 11vw, 180px);
       height: clamp(140px, 11vw, 180px);
+      transform: scale(1.05);
     }
 
     .chart-svg {
@@ -199,7 +206,7 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .details {
-      padding: 0 0 24px 152px;
+      padding: 0 0 24px 203px;
       color: #4a4a4a;
       font-size: 14px;
       line-height: 1.6;
@@ -220,7 +227,7 @@ import { LanguageService } from '../../services/language.service';
     .point-icon {
       width: 24px;
       height: 24px;
-      background: #2952cc;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       border-radius: 50%;
       display: flex;
@@ -229,6 +236,7 @@ import { LanguageService } from '../../services/language.service';
       font-size: 14px;
       flex-shrink: 0;
       margin-top: 2px;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
     }
 
     .point-text {
@@ -267,6 +275,7 @@ export class ResultsComponent {
   timelineItems = [
     {
       year: '2023',
+      image: 'https://images.pexels.com/photos/8297031/pexels-photo-8297031.jpeg?auto=compress&cs=tinysrgb&w=400',
       expanded: false,
       details: [
         'Achieved 127% return on investment through strategic market positioning and risk management',
@@ -277,6 +286,7 @@ export class ResultsComponent {
     },
     {
       year: '2024',
+      image: 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=400',
       expanded: false,
       details: [
         'Delivered 145% ROI by leveraging emerging market opportunities and trend analysis',
@@ -287,6 +297,7 @@ export class ResultsComponent {
     },
     {
       year: '2025',
+      image: 'https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?auto=compress&cs=tinysrgb&w=400',
       expanded: false,
       details: [
         'Targeting 150%+ returns through refined strategies and market intelligence',

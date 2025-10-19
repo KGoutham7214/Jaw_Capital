@@ -1,22 +1,24 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ScrollAnimationDirective } from '../../directives/scroll-animation.directive';
 
 @Component({
   selector: 'app-contact-cta',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ScrollAnimationDirective],
   template: `
     <section class="contact-cta">
+      <div class="animated-bg"></div>
       <div class="container">
         <div class="content">
-          <h2 class="section-title">Contact us</h2>
-          <p class="subtitle">Let's Connect</p>
-          <p class="description">
+          <h2 class="section-title" appScrollAnimation animationClass="fade-in-up">Contact us</h2>
+          <p class="subtitle" appScrollAnimation animationClass="fade-in-up" [animationDelay]="100">Let's Connect</p>
+          <p class="description" appScrollAnimation animationClass="fade-in-up" [animationDelay]="200">
             Have questions or want to learn more about our trading program?<br>
             Our team is here to guide you.
           </p>
-          <button routerLink="/contact" class="contact-btn" type="button">
+          <button routerLink="/contact" class="contact-btn" type="button" appScrollAnimation animationClass="scale-in" [animationDelay]="300">
             Contact Our Team
             <span class="arrow" aria-hidden="true">→</span>
           </button>
@@ -26,14 +28,31 @@ import { RouterModule } from '@angular/router';
   `,
   styles: [`
     .contact-cta {
-      background: #2952cc;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       padding: 80px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .animated-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
     }
 
     .container {
       margin: 0 auto;
       padding: 0 80px;
+      position: relative;
+      z-index: 1;
     }
 
     .content {
@@ -69,7 +88,7 @@ import { RouterModule } from '@angular/router';
       font-size: clamp(14px, 1.2vw, 18px);
       font-weight: 500;
       cursor: pointer;
-      border-radius: 24px;
+      border-radius: 8px;
       transition: all 0.3s;
       display: inline-flex;
       align-items: center;
@@ -77,8 +96,8 @@ import { RouterModule } from '@angular/router';
     }
 
     .contact-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
     }
 
     .contact-btn:focus-visible {

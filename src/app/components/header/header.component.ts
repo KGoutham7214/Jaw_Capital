@@ -113,11 +113,12 @@ import { LanguageService, Language } from '../../services/language.service';
       letter-spacing: 0.5px;
       text-decoration: none;
       color: #1a1a1a;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
     }
 
     .logo:hover {
       color: #2952cc;
+      transform: scale(1.05);
     }
 
     .nav {
@@ -129,11 +130,13 @@ import { LanguageService, Language } from '../../services/language.service';
       color: #1a1a1a;
       text-decoration: none;
       font-size: clamp(13px, 1.1vw, 16px);
-      transition: color 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     .nav a:hover {
       color: #2952cc;
+      transform: translateY(-1px);
     }
 
     .nav a:focus-visible {
@@ -166,6 +169,8 @@ import { LanguageService, Language } from '../../services/language.service';
     .language-btn:hover {
       border-color: #2952cc;
       color: #2952cc;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(41, 82, 204, 0.15);
     }
 
     .language-btn:focus-visible {

@@ -1,16 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../services/language.service';
+import { ScrollAnimationDirective } from '../../directives/scroll-animation.directive';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollAnimationDirective],
   template: `
     <section id="about" class="about">
+      <div class="overlay"></div>
       <div class="container">
-        <h2 class="section-title">{{ t().about.title }}</h2>
-        <p class="description">
+        <h2 class="section-title" appScrollAnimation animationClass="fade-in-up">{{ t().about.title }}</h2>
+        <p class="description" appScrollAnimation animationClass="fade-in-up" [animationDelay]="100">
           {{ t().about.description }}
         </p>
       </div>
@@ -18,13 +20,26 @@ import { LanguageService } from '../../services/language.service';
   `,
   styles: [`
     .about {
-      background: white;
+      background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
       padding: 80px 24px;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(41, 82, 204, 0.03) 0%, rgba(255, 255, 255, 0.05) 100%);
+      pointer-events: none;
     }
 
     .container {
       margin: 0 auto;
       padding: 0 80px;
+      position: relative;
+      z-index: 1;
     }
 
     .section-title {
