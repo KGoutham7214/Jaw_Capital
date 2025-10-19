@@ -12,14 +12,14 @@ import { LanguageService } from '../../services/language.service';
     <section class="contact-hero">
       <div class="hero-content">
         <h1 class="hero-title">{{ t().contact.title }}</h1>
-        <p class="hero-subtitle">Let's discuss how we can help you achieve your trading objectives.</p>
+        <p class="hero-subtitle">We can't wait to make awesomeness with you.</p>
       </div>
     </section>
 
     <section class="contact-form-section" appScrollAnimation animationClass="fade-in-up">
       <div class="container">
         <h2 class="form-title">Get in Touch</h2>
-        <p class="form-subtitle">Please provide your information and we'll be in contact shortly.</p>
+        <p class="form-subtitle">Fill out the form below and we'll get back to you shortly.</p>
 
         <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm" aria-label="Contact form">
           <div class="error-message" *ngIf="showError" role="alert">
@@ -30,7 +30,6 @@ import { LanguageService } from '../../services/language.service';
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="firstName">First Name *</label>
               <input
                 type="text"
                 id="firstName"
@@ -45,7 +44,6 @@ import { LanguageService } from '../../services/language.service';
               <span class="field-error" *ngIf="formErrors.firstName">{{ formErrors.firstName }}</span>
             </div>
             <div class="form-group">
-              <label for="lastName">Last Name *</label>
               <input
                 type="text"
                 id="lastName"
@@ -62,7 +60,6 @@ import { LanguageService } from '../../services/language.service';
           </div>
 
           <div class="form-group">
-            <label for="address">Address</label>
             <input
               type="text"
               id="address"
@@ -74,7 +71,6 @@ import { LanguageService } from '../../services/language.service';
           </div>
 
           <div class="form-group">
-            <label for="email">Email Address *</label>
             <input
               type="email"
               id="email"
@@ -90,7 +86,6 @@ import { LanguageService } from '../../services/language.service';
 
           <div class="form-row">
             <div class="form-group">
-              <label for="phone">Phone Number *</label>
               <div class="phone-input-wrapper">
                 <div class="country-selector-container">
                   <button type="button" class="country-selector" (click)="toggleCountryDropdown()" aria-label="Select country code">
@@ -138,7 +133,6 @@ import { LanguageService } from '../../services/language.service';
               <span class="field-error" *ngIf="formErrors.phone">{{ formErrors.phone }}</span>
             </div>
             <div class="form-group">
-              <label for="income">Annual Income</label>
               <input
                 type="text"
                 id="income"
@@ -152,7 +146,6 @@ import { LanguageService } from '../../services/language.service';
           </div>
 
           <div class="form-group">
-            <label for="employeeDetails">Employment Details</label>
             <input
               type="text"
               id="employeeDetails"
@@ -164,7 +157,6 @@ import { LanguageService } from '../../services/language.service';
           </div>
 
           <div class="form-group">
-            <label for="experience">Trading Experience</label>
             <input
               type="text"
               id="experience"
@@ -181,7 +173,7 @@ import { LanguageService } from '../../services/language.service';
     </section>
 
     <section class="contact-info-section">
-      <div class="container-wide">
+      <div class="container">
         <h2 class="info-title">Connect with Us</h2>
         <div class="info-grid">
           <div class="info-item">
@@ -190,8 +182,10 @@ import { LanguageService } from '../../services/language.service';
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
             </div>
-            <h3>Phone Number</h3>
-            <p>{{ t().footer.phoneNumber }}</p>
+            <div class="info-content">
+              <h3>Phone Number</h3>
+              <p>{{ t().footer.phoneNumber }}</p>
+            </div>
           </div>
           <div class="info-item">
             <div class="icon-wrapper email">
@@ -200,8 +194,10 @@ import { LanguageService } from '../../services/language.service';
                 <polyline points="22,6 12,13 2,6"/>
               </svg>
             </div>
-            <h3>Email</h3>
-            <p>{{ t().footer.email }}</p>
+            <div class="info-content">
+              <h3>Email</h3>
+              <p>{{ t().footer.email }}</p>
+            </div>
           </div>
           <div class="info-item">
             <div class="icon-wrapper location">
@@ -210,8 +206,10 @@ import { LanguageService } from '../../services/language.service';
                 <circle cx="12" cy="10" r="3"/>
               </svg>
             </div>
-            <h3>Office Location</h3>
-            <p>Whitehall St, Somerville, Florida, USA</p>
+            <div class="info-content">
+              <h3>Office Location</h3>
+              <p>Whitehall St, Somerville, Florida, USA</p>
+            </div>
           </div>
         </div>
       </div>
@@ -219,77 +217,63 @@ import { LanguageService } from '../../services/language.service';
   `,
   styles: [`
     .contact-hero {
-      background: linear-gradient(rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.92)), url('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+      background: linear-gradient(135deg, #1e3a8a 0%, #2952cc 100%);
       color: white;
       padding: 140px 24px 100px;
       text-align: center;
-      position: relative;
-    }
-
-    .contact-hero::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-      pointer-events: none;
     }
 
     .hero-content {
+      max-width: 700px;
       margin: 0 auto;
-      padding: 0 40px;
-      position: relative;
-      z-index: 1;
     }
 
     .hero-title {
-      font-size: 56px;
+      font-size: 52px;
       font-weight: 300;
-      margin: 0 0 16px 0;
-      letter-spacing: -0.5px;
+      margin: 0 0 20px 0;
+      letter-spacing: -1px;
     }
 
     .hero-subtitle {
       font-size: 20px;
       opacity: 0.9;
+      margin: 0;
       font-weight: 300;
-      max-width: 700px;
-      margin: 0 auto;
+      line-height: 1.6;
     }
 
     .contact-form-section {
-      padding: 80px 24px;
-      background: white;
+      padding: 100px 24px;
+      background: #ffffff;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 0 40px;
     }
 
     .form-title {
       font-size: 36px;
       font-weight: 300;
       text-align: center;
-      margin: 0 0 8px 0;
-      color: #2952cc;
+      margin: 0 0 12px 0;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
     }
 
     .form-subtitle {
       font-size: 16px;
       text-align: center;
-      margin: 0 0 48px 0;
-      color: #64748b;
+      margin: 0 0 50px 0;
+      color: #6b7280;
       font-weight: 400;
     }
 
     .contact-form {
-      background: #fafbfc;
-      padding: 48px;
-      border: 1px solid #e2e8f0;
+      background: white;
+      padding: 50px;
+      border: 1px solid #e5e7eb;
       border-radius: 12px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
@@ -307,24 +291,23 @@ import { LanguageService } from '../../services/language.service';
 
     label {
       display: block;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 500;
       margin-bottom: 8px;
-      color: #334155;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      color: #1a1a1a;
     }
 
     input {
       width: 100%;
-      padding: 14px 16px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
       font-size: 15px;
-      background: white;
-      color: #1e293b;
-      transition: all 0.3s;
+      background: #ffffff;
+      color: #1a1a1a;
+      transition: all 0.2s;
       box-sizing: border-box;
+      height: 52px;
     }
 
     input::placeholder {
@@ -334,7 +317,6 @@ import { LanguageService } from '../../services/language.service';
     input:focus {
       outline: none;
       border-color: #2952cc;
-      background: white;
       box-shadow: 0 0 0 3px rgba(41, 82, 204, 0.08);
     }
 
@@ -342,42 +324,55 @@ import { LanguageService } from '../../services/language.service';
       display: flex;
       align-items: center;
       gap: 8px;
-      background: white;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      padding-right: 16px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 0 16px;
+      transition: all 0.2s;
+      height: 52px;
+    }
+
+    .phone-input-wrapper:focus-within {
+      border-color: #2952cc;
+      box-shadow: 0 0 0 3px rgba(41, 82, 204, 0.08);
     }
 
     .country-selector {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       background: none;
       border: none;
-      padding: 10px 12px;
+      padding: 0;
       cursor: pointer;
-      color: #6b7280;
-      font-size: 14px;
+      color: #1a1a1a;
+      font-size: 15px;
+      height: 100%;
+      min-width: 70px;
     }
 
     .flag {
       font-size: 20px;
+      line-height: 1;
     }
 
     .arrow {
       font-size: 10px;
+      color: #6b7280;
     }
 
     .phone-input-wrapper input {
       background: transparent;
-      padding: 16px 0;
+      padding: 0;
       flex: 1;
       border: none;
+      height: 100%;
     }
 
     .phone-input-wrapper input:focus {
       background: transparent;
       box-shadow: none;
+      border: none;
     }
 
     .country-selector-container {
@@ -513,18 +508,17 @@ import { LanguageService } from '../../services/language.service';
       border: none;
       padding: 16px 32px;
       font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+      font-weight: 500;
       cursor: pointer;
       border-radius: 8px;
-      transition: all 0.3s;
+      transition: all 0.2s;
+      margin-top: 8px;
     }
 
     .submit-btn:hover {
       background: #1e3a8a;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(41, 82, 204, 0.3);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(41, 82, 204, 0.25);
     }
 
     .submit-btn:focus-visible {
@@ -535,11 +529,6 @@ import { LanguageService } from '../../services/language.service';
     .contact-info-section {
       padding: 100px 24px;
       background: #f9fafb;
-    }
-
-    .container-wide {
-      max-width: 900px;
-      margin: 0 auto;
     }
 
     .info-title {
@@ -553,17 +542,10 @@ import { LanguageService } from '../../services/language.service';
 
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      max-width: 800px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 32px;
+      max-width: 1000px;
       margin: 0 auto;
-    }
-
-    .info-grid .info-item:last-child {
-      grid-column: 1 / -1;
-      max-width: 400px;
-      margin: 0 auto;
-      width: 100%;
     }
 
     .info-item {
@@ -573,11 +555,14 @@ import { LanguageService } from '../../services/language.service';
       border-radius: 16px;
       border: 1px solid #e5e7eb;
       transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .info-item:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
       border-color: #d1d5db;
     }
 
@@ -588,7 +573,7 @@ import { LanguageService } from '../../services/language.service';
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 24px;
+      margin-bottom: 24px;
       transition: all 0.3s;
     }
 
@@ -616,7 +601,11 @@ import { LanguageService } from '../../services/language.service';
       transform: scale(1.1);
     }
 
-    .info-item h3 {
+    .info-content {
+      width: 100%;
+    }
+
+    .info-content h3 {
       font-size: 16px;
       font-weight: 600;
       margin: 0 0 8px 0;
@@ -624,7 +613,7 @@ import { LanguageService } from '../../services/language.service';
       letter-spacing: -0.2px;
     }
 
-    .info-item p {
+    .info-content p {
       font-size: 15px;
       color: #6b7280;
       margin: 0;
@@ -632,25 +621,28 @@ import { LanguageService } from '../../services/language.service';
     }
 
     @media (max-width: 768px) {
+      .contact-hero {
+        padding: 100px 24px 70px;
+      }
+
       .hero-title {
         font-size: 36px;
       }
 
+      .hero-subtitle {
+        font-size: 17px;
+      }
+
+      .contact-form-section {
+        padding: 60px 24px;
+      }
+
       .contact-form {
-        padding: 24px;
+        padding: 32px 24px;
       }
 
       .form-row {
         grid-template-columns: 1fr;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .info-grid .info-item:last-child {
-        grid-column: 1;
-        max-width: 100%;
       }
 
       .info-title {
