@@ -65,7 +65,6 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
     .what-we-do-page {
       background: linear-gradient(rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.97)), url('https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
       padding: 120px 24px 80px;
-      min-height: calc(100vh - 200px);
       position: relative;
     }
 
