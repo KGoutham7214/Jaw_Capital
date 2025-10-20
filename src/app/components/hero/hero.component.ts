@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ScrollAnimationDirective } from '../../directives/scroll-animation.directive';
@@ -10,6 +10,10 @@ import { LanguageService } from '../../services/language.service';
   imports: [CommonModule, ScrollAnimationDirective],
   template: `
     <section class="hero">
+      <video #heroVideo class="hero-video" muted loop playsinline [attr.autoplay]="true">
+        <source src="assets/videos/bgvideo2.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
       <div class="container">
         <h1 class="title" appScrollAnimation animationClass="fade-in-up">
           {{ t().hero.title.split('\\n')[0] }}<br>
@@ -24,17 +28,40 @@ import { LanguageService } from '../../services/language.service';
   `,
   styles: [`
     .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
       padding: 120px 24px 160px;
       text-align: center;
       position: relative;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
     }
 
     .container {
       margin: 0 auto;
       padding: 0 80px;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .title {
@@ -87,10 +114,22 @@ import { LanguageService } from '../../services/language.service';
     }
   `]
 })
-export class HeroComponent {
+export class HeroComponent implements AfterViewInit {
+  @ViewChild('heroVideo') videoElement!: ElementRef<HTMLVideoElement>;
+
   private languageService = inject(LanguageService);
   private router = inject(Router);
   t = this.languageService.getTranslations.bind(this.languageService);
+
+  ngAfterViewInit() {
+    if (this.videoElement?.nativeElement) {
+      const video = this.videoElement.nativeElement;
+      video.muted = true;
+      video.play().catch(error => {
+        console.log('Video autoplay failed:', error);
+      });
+    }
+  }
 
   navigateToContact() {
     this.router.navigate(['/contact']);
