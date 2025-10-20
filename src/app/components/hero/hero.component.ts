@@ -53,7 +53,7 @@ import { LanguageService } from '../../services/language.service';
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: #fff;
       z-index: 1;
     }
 
