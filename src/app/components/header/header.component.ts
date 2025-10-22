@@ -10,9 +10,14 @@ import { LanguageService, Language } from '../../services/language.service';
   template: `
     <header class="header" role="banner">
       <div class="container">
-        <a routerLink="/" class="logo" aria-label="JAW Logo">
-          <img src="/src/assets/logo.png" alt="JAW Capital Management" />
-        </a>
+        <div class="logo-container">
+          <a routerLink="/" class="logo" aria-label="JAW Logo">
+            <img src="assets/logo_only.png" alt="JAW Capital Management" />
+          </a>
+          <a routerLink="/" class="logo text-only" aria-label="JAW Logo">
+            <img src="assets/logo_text.png" alt="JAW Capital Management" />
+          </a>
+        </div>
 
         <button class="mobile-menu-btn" (click)="toggleMobileMenu()" type="button" aria-label="Toggle menu">
           <span class="hamburger" [class.open]="isMobileMenuOpen()"></span>
@@ -109,11 +114,21 @@ import { LanguageService, Language } from '../../services/language.service';
       justify-content: space-between;
     }
 
+    .logo-container{
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
     .logo {
       text-decoration: none;
       display: flex;
       align-items: center;
       transition: all 0.3s ease;
+    }
+
+    .text-only {
+      height: 40px;
     }
 
     .logo img {
