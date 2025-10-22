@@ -718,6 +718,7 @@ import { LanguageService } from '../../services/language.service';
       background: transparent;
       padding: 16px 0;
       flex: 1;
+      border:none;
     }
 
     .phone-input-wrapper input:focus {

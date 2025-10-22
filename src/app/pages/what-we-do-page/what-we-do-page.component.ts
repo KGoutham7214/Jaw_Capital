@@ -226,7 +226,7 @@ export class WhatWeDoPageComponent {
 
   carouselImages = [
     { label: 'Office Building', src: 'assets/what-we-do/building.jpg' },
-    { label: 'Conference Room', src: 'assets/what-we-do/conference.jpg' },
+    { label: 'Conference Room', src: 'assets/what-we-do/conf_gem.png' },
     { label: 'Satellite', src: 'assets/what-we-do/satellite.jpg' }
   ];
 
