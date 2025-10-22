@@ -78,11 +78,11 @@ export class LanguageService {
       },
       whatWeDo: {
         title: 'What We Do',
-        description: 'Our system is built around flexibility. By using a mix of proven strategies, technical indicators, and a maths collision, we\'re able to take advantage of opportunities whether the market is rising or falling. Every move we make is calculated, ensuring that we stay ahead of the game and deliver the results we\'re aiming for in the markets we\'ve worked hard to understand and predict.'
+        description: 'At JAW Capital Management, we have dedicated over a decade to mastering the art of day trading in the stock market. Over the years, our team has refined a disciplined approach that combines multiple strategies, advanced indicators, and carefully structured hedge positions. This approach allows us to remain flexible and profitable, whether the market is trending upward or experiencing a downturn. By relying on carefully calculated metrics, we are able to effectively hedge against risk and protect our capital, ensuring long-term stability in an often unpredictable environment. It is also important to note that JAW Capital Management operates as a private firm, meaning we do not manage or accept outside funds. Instead, we focus exclusively on growing and preserving our own capital through proven strategies and risk-managed decision-making.'
       },
       results: {
         title: 'Results',
-        subtitle: 'Our portfolios built on a decade of trading. A collection of strategies built through backtest simulations and in live trading.',
+        subtitle: 'Our system is built for flexibility, combining a mix of proven trading strategies, advanced technical indicators, and a structured hedge position to adapt to any market condition.',
         corporateAdvisory: 'Corporate Advisory',
         details: 'Comprehensive legal guidance for business formation contracts, and compliance needs.'
       },

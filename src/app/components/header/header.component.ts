@@ -10,7 +10,9 @@ import { LanguageService, Language } from '../../services/language.service';
   template: `
     <header class="header" role="banner">
       <div class="container">
-        <a routerLink="/" class="logo" aria-label="JAW Logo">JAW</a>
+        <a routerLink="/" class="logo" aria-label="JAW Logo">
+          <img src="/src/assets/logo.png" alt="JAW Capital Management" />
+        </a>
 
         <button class="mobile-menu-btn" (click)="toggleMobileMenu()" type="button" aria-label="Toggle menu">
           <span class="hamburger" [class.open]="isMobileMenuOpen()"></span>
@@ -108,17 +110,24 @@ import { LanguageService, Language } from '../../services/language.service';
     }
 
     .logo {
-      font-weight: 700;
-      font-size: clamp(18px, 1.5vw, 24px);
-      letter-spacing: 0.5px;
       text-decoration: none;
-      color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
       transition: all 0.3s ease;
     }
 
     .logo:hover {
-      color: #2952cc;
       transform: scale(1.05);
+    }
+
+    .logo:hover img {
+      filter: brightness(1.1);
     }
 
     .nav {
@@ -283,6 +292,10 @@ import { LanguageService, Language } from '../../services/language.service';
     @media (max-width: 768px) {
       .container {
         padding: 0 24px;
+      }
+
+      .logo img {
+        height: 32px;
       }
 
       .mobile-menu-btn {

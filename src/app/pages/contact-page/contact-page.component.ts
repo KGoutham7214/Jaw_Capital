@@ -21,161 +21,381 @@ import { LanguageService } from '../../services/language.service';
         <h2 class="form-title">Get in Touch</h2>
         <p class="form-subtitle">Please provide your information and we'll be in contact shortly.</p>
 
-        <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm" aria-label="Contact form">
+        <div class="step-indicator">
+          <div class="step" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
+            <div class="step-number">1</div>
+            <div class="step-label">Basic Details</div>
+          </div>
+          <div class="step-line" [class.completed]="currentStep > 1"></div>
+          <div class="step" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
+            <div class="step-number">2</div>
+            <div class="step-label">Address</div>
+          </div>
+          <div class="step-line" [class.completed]="currentStep > 2"></div>
+          <div class="step" [class.active]="currentStep >= 3">
+            <div class="step-number">3</div>
+            <div class="step-label">Trading Experience</div>
+          </div>
+        </div>
+
+        <form class="contact-form" #contactForm="ngForm" aria-label="Contact form">
           <div class="error-message" *ngIf="showError" role="alert">
             {{ errorMessage }}
           </div>
           <div class="success-message" *ngIf="showSuccess" role="status">
             {{ successMessage }}
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="firstName">First Name *</label>
-              <input
-                type="text"
-                id="firstName"
-                [(ngModel)]="formData.firstName"
-                name="firstName"
-                placeholder="First Name"
-                [attr.aria-label]="t().contact.firstName"
-                [class.error]="formErrors.firstName"
-                (keypress)="validateLettersOnly($event)"
-                required
-              >
-              <span class="field-error" *ngIf="formErrors.firstName">{{ formErrors.firstName }}</span>
+
+          <div *ngIf="currentStep === 1" class="form-step">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  [(ngModel)]="formData.firstName"
+                  name="firstName"
+                  placeholder="Enter your first name"
+                  [attr.aria-label]="t().contact.firstName"
+                  [class.error]="formErrors.firstName"
+                  (keypress)="validateLettersOnly($event)"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.firstName">{{ formErrors.firstName }}</span>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  [(ngModel)]="formData.lastName"
+                  name="lastName"
+                  placeholder="Enter your last name"
+                  [attr.aria-label]="t().contact.lastName"
+                  [class.error]="formErrors.lastName"
+                  (keypress)="validateLettersOnly($event)"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.lastName">{{ formErrors.lastName }}</span>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="lastName">Last Name *</label>
-              <input
-                type="text"
-                id="lastName"
-                [(ngModel)]="formData.lastName"
-                name="lastName"
-                placeholder="Last Name"
-                [attr.aria-label]="t().contact.lastName"
-                [class.error]="formErrors.lastName"
-                (keypress)="validateLettersOnly($event)"
-                required
-              >
-              <span class="field-error" *ngIf="formErrors.lastName">{{ formErrors.lastName }}</span>
-            </div>
-          </div>
 
-          <div class="form-group">
-            <label for="address">Address</label>
-            <input
-              type="text"
-              id="address"
-              [(ngModel)]="formData.address"
-              name="address"
-              placeholder="Address"
-              aria-label="Address"
-            >
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input
-              type="email"
-              id="email"
-              [(ngModel)]="formData.email"
-              name="email"
-              placeholder="Email Address"
-              [attr.aria-label]="t().contact.email"
-              [class.error]="formErrors.email"
-              required
-            >
-            <span class="field-error" *ngIf="formErrors.email">{{ formErrors.email }}</span>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="phone">Phone Number *</label>
-              <div class="phone-input-wrapper">
-                <div class="country-selector-container">
-                  <button type="button" class="country-selector" (click)="toggleCountryDropdown()" aria-label="Select country code">
-                    <span class="flag">{{ selectedCountry.flag }}</span>
-                    <span class="arrow">▼</span>
-                  </button>
-                  <div class="country-dropdown" *ngIf="showCountryDropdown" role="menu">
-                    <div class="country-search">
-                      <input
-                        type="text"
-                        [(ngModel)]="countrySearchTerm"
-                        name="countrySearch"
-                        placeholder="Search country..."
-                        (click)="$event.stopPropagation()"
-                        class="search-input"
-                      >
-                    </div>
-                    <div class="country-list">
-                      <button
-                        *ngFor="let country of filteredCountries()"
-                        type="button"
-                        class="country-item"
-                        (click)="selectCountry(country)"
-                        role="menuitem"
-                      >
-                        <span class="country-flag">{{ country.flag }}</span>
-                        <span class="country-name">{{ country.name }}</span>
-                        <span class="country-code">{{ country.code }}</span>
-                      </button>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input
+                  type="email"
+                  id="email"
+                  [(ngModel)]="formData.email"
+                  name="email"
+                  placeholder="Enter your email address"
+                  [attr.aria-label]="t().contact.email"
+                  [class.error]="formErrors.email"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.email">{{ formErrors.email }}</span>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <div class="phone-input-wrapper" [class.error]="formErrors.phone">
+                  <div class="country-selector-container">
+                    <button type="button" class="country-selector" (click)="toggleCountryDropdown()" aria-label="Select country code">
+                      <span class="flag">{{ selectedCountry.flag }}</span>
+                      <span class="arrow">▼</span>
+                    </button>
+                    <div class="country-dropdown" *ngIf="showCountryDropdown" role="menu">
+                      <div class="country-search">
+                        <input
+                          type="text"
+                          [(ngModel)]="countrySearchTerm"
+                          name="countrySearch"
+                          placeholder="Search country..."
+                          (click)="$event.stopPropagation()"
+                          class="search-input"
+                        >
+                      </div>
+                      <div class="country-list">
+                        <button
+                          *ngFor="let country of filteredCountries()"
+                          type="button"
+                          class="country-item"
+                          (click)="selectCountry(country)"
+                          role="menuitem"
+                        >
+                          <span class="country-flag">{{ country.flag }}</span>
+                          <span class="country-name">{{ country.name }}</span>
+                          <span class="country-code">{{ country.code }}</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
+                  <input
+                    type="tel"
+                    id="phone"
+                    [(ngModel)]="formData.phone"
+                    name="phone"
+                    placeholder="Phone Number"
+                    [attr.aria-label]="t().contact.phoneNumber"
+                    (keypress)="validateNumbersOnly($event)"
+                    maxlength="15"
+                  >
                 </div>
-                <input
-                  type="tel"
-                  id="phone"
-                  [(ngModel)]="formData.phone"
-                  name="phone"
-                  placeholder="Phone Number"
-                  [attr.aria-label]="t().contact.phoneNumber"
-                  [class.error]="formErrors.phone"
-                  (keypress)="validateNumbersOnly($event)"
-                  maxlength="15"
-                >
+                <span class="field-error" *ngIf="formErrors.phone">{{ formErrors.phone }}</span>
               </div>
-              <span class="field-error" *ngIf="formErrors.phone">{{ formErrors.phone }}</span>
             </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="dateOfBirth">Date of Birth *</label>
+                <input
+                  type="date"
+                  id="dateOfBirth"
+                  [(ngModel)]="formData.dateOfBirth"
+                  name="dateOfBirth"
+                  [class.error]="formErrors.dateOfBirth"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.dateOfBirth">{{ formErrors.dateOfBirth }}</span>
+              </div>
+              <div class="form-group">
+                <label for="nationality">Nationality *</label>
+                <input
+                  type="text"
+                  id="nationality"
+                  [(ngModel)]="formData.nationality"
+                  name="nationality"
+                  placeholder="Enter your nationality"
+                  [class.error]="formErrors.nationality"
+                  (keypress)="validateLettersOnly($event)"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.nationality">{{ formErrors.nationality }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="currentStep === 2" class="form-step">
             <div class="form-group">
-              <label for="income">Annual Income</label>
+              <label for="street">Street Address *</label>
               <input
                 type="text"
-                id="income"
-                [(ngModel)]="formData.income"
-                name="income"
-                placeholder="Income"
-                aria-label="Income"
-                (keypress)="validateNumbersOnly($event)"
+                id="street"
+                [(ngModel)]="formData.street"
+                name="street"
+                placeholder="Enter your street address"
+                aria-label="Street"
+                [class.error]="formErrors.street"
+                required
               >
+              <span class="field-error" *ngIf="formErrors.street">{{ formErrors.street }}</span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city">City *</label>
+                <input
+                  type="text"
+                  id="city"
+                  [(ngModel)]="formData.city"
+                  name="city"
+                  placeholder="Enter your city"
+                  [class.error]="formErrors.city"
+                  (keypress)="validateLettersOnly($event)"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.city">{{ formErrors.city }}</span>
+              </div>
+              <div class="form-group">
+                <label for="state">State/Province *</label>
+                <input
+                  type="text"
+                  id="state"
+                  [(ngModel)]="formData.state"
+                  name="state"
+                  placeholder="Enter your state"
+                  [class.error]="formErrors.state"
+                  (keypress)="validateLettersOnly($event)"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.state">{{ formErrors.state }}</span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="pincode">Pincode/ZIP Code *</label>
+                <input
+                  type="text"
+                  id="pincode"
+                  [(ngModel)]="formData.pincode"
+                  name="pincode"
+                  placeholder="Enter pincode"
+                  [class.error]="formErrors.pincode"
+                  maxlength="10"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.pincode">{{ formErrors.pincode }}</span>
+              </div>
+              <div class="form-group">
+                <label for="country">Country *</label>
+                <input
+                  type="text"
+                  id="country"
+                  [(ngModel)]="formData.country"
+                  name="country"
+                  placeholder="Enter your country"
+                  [class.error]="formErrors.country"
+                  (keypress)="validateLettersOnly($event)"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.country">{{ formErrors.country }}</span>
+              </div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="employeeDetails">Employment Details</label>
-            <input
-              type="text"
-              id="employeeDetails"
-              [(ngModel)]="formData.employeeDetails"
-              name="employeeDetails"
-              placeholder="Employee Details"
-              aria-label="Employee Details"
-            >
+          <div *ngIf="currentStep === 3" class="form-step">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="annualIncome">Annual Income (USD) *</label>
+                <input
+                  type="text"
+                  id="annualIncome"
+                  [(ngModel)]="formData.annualIncome"
+                  name="annualIncome"
+                  placeholder="Enter your annual income"
+                  aria-label="Annual Income"
+                  [class.error]="formErrors.annualIncome"
+                  (keypress)="validateNumbersOnly($event)"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.annualIncome">{{ formErrors.annualIncome }}</span>
+              </div>
+              <div class="form-group">
+                <label for="employmentStatus">Employment Status *</label>
+                <select
+                  id="employmentStatus"
+                  [(ngModel)]="formData.employmentStatus"
+                  name="employmentStatus"
+                  [class.error]="formErrors.employmentStatus"
+                  required
+                >
+                  <option value="">Select employment status</option>
+                  <option value="employed">Employed</option>
+                  <option value="self-employed">Self-Employed</option>
+                  <option value="unemployed">Unemployed</option>
+                  <option value="retired">Retired</option>
+                  <option value="student">Student</option>
+                </select>
+                <span class="field-error" *ngIf="formErrors.employmentStatus">{{ formErrors.employmentStatus }}</span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="employer">Employer/Company *</label>
+                <input
+                  type="text"
+                  id="employer"
+                  [(ngModel)]="formData.employer"
+                  name="employer"
+                  placeholder="Enter your employer name"
+                  [class.error]="formErrors.employer"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.employer">{{ formErrors.employer }}</span>
+              </div>
+              <div class="form-group">
+                <label for="occupation">Occupation *</label>
+                <input
+                  type="text"
+                  id="occupation"
+                  [(ngModel)]="formData.occupation"
+                  name="occupation"
+                  placeholder="Enter your occupation"
+                  [class.error]="formErrors.occupation"
+                  required
+                >
+                <span class="field-error" *ngIf="formErrors.occupation">{{ formErrors.occupation }}</span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="yearsOfExperience">Years of Trading Experience *</label>
+                <select
+                  id="yearsOfExperience"
+                  [(ngModel)]="formData.yearsOfExperience"
+                  name="yearsOfExperience"
+                  [class.error]="formErrors.yearsOfExperience"
+                  required
+                >
+                  <option value="">Select experience level</option>
+                  <option value="none">No Experience</option>
+                  <option value="less-than-1">Less than 1 year</option>
+                  <option value="1-3">1-3 years</option>
+                  <option value="3-5">3-5 years</option>
+                  <option value="5-10">5-10 years</option>
+                  <option value="10+">10+ years</option>
+                </select>
+                <span class="field-error" *ngIf="formErrors.yearsOfExperience">{{ formErrors.yearsOfExperience }}</span>
+              </div>
+              <div class="form-group">
+                <label for="tradingKnowledge">Trading Knowledge Level *</label>
+                <select
+                  id="tradingKnowledge"
+                  [(ngModel)]="formData.tradingKnowledge"
+                  name="tradingKnowledge"
+                  [class.error]="formErrors.tradingKnowledge"
+                  required
+                >
+                  <option value="">Select knowledge level</option>
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="advanced">Advanced</option>
+                  <option value="expert">Expert</option>
+                </select>
+                <span class="field-error" *ngIf="formErrors.tradingKnowledge">{{ formErrors.tradingKnowledge }}</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="investmentGoals">Investment Goals *</label>
+              <textarea
+                id="investmentGoals"
+                [(ngModel)]="formData.investmentGoals"
+                name="investmentGoals"
+                placeholder="Describe your investment goals and objectives"
+                [class.error]="formErrors.investmentGoals"
+                rows="3"
+                required
+              ></textarea>
+              <span class="field-error" *ngIf="formErrors.investmentGoals">{{ formErrors.investmentGoals }}</span>
+            </div>
+
+            <div class="form-group">
+              <label for="riskTolerance">Risk Tolerance *</label>
+              <select
+                id="riskTolerance"
+                [(ngModel)]="formData.riskTolerance"
+                name="riskTolerance"
+                [class.error]="formErrors.riskTolerance"
+                required
+              >
+                <option value="">Select risk tolerance</option>
+                <option value="conservative">Conservative - Prefer safety over returns</option>
+                <option value="moderate">Moderate - Balanced approach</option>
+                <option value="aggressive">Aggressive - Higher risk for higher returns</option>
+                <option value="very-aggressive">Very Aggressive - Maximum risk tolerance</option>
+              </select>
+              <span class="field-error" *ngIf="formErrors.riskTolerance">{{ formErrors.riskTolerance }}</span>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="experience">Trading Experience</label>
-            <input
-              type="text"
-              id="experience"
-              [(ngModel)]="formData.experience"
-              name="experience"
-              placeholder="Trading Experience"
-              [attr.aria-label]="t().contact.tradingExperience"
-            >
+          <div class="form-actions">
+            <button type="button" *ngIf="currentStep > 1" class="back-btn" (click)="previousStep()">Back</button>
+            <button type="button" *ngIf="currentStep < totalSteps" class="next-btn" (click)="nextStep()">Next</button>
+            <button type="button" *ngIf="currentStep === totalSteps" class="submit-btn" (click)="onSubmit()">{{ t().contact.submit }}</button>
           </div>
-
-          <button type="submit" class="submit-btn">{{ t().contact.submit }}</button>
         </form>
       </div>
     </section>
@@ -257,6 +477,7 @@ import { LanguageService } from '../../services/language.service';
       font-weight: 300;
       max-width: 700px;
       margin: 0 auto;
+      margin: 0;
     }
 
     .contact-form-section {
@@ -281,9 +502,78 @@ import { LanguageService } from '../../services/language.service';
     .form-subtitle {
       font-size: 16px;
       text-align: center;
-      margin: 0 0 48px 0;
+      margin: 0 0 32px 0;
       color: #64748b;
       font-weight: 400;
+    }
+
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 48px;
+      padding: 0 20px;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s;
+    }
+
+    .step.active .step-number {
+      background: #2952cc;
+      color: white;
+    }
+
+    .step.completed .step-number {
+      background: #16a34a;
+      color: white;
+    }
+
+    .step-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #94a3b8;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .step.active .step-label {
+      color: #2952cc;
+      font-weight: 600;
+    }
+
+    .step.completed .step-label {
+      color: #16a34a;
+    }
+
+    .step-line {
+      width: 80px;
+      height: 2px;
+      background: #e2e8f0;
+      margin: 0 12px;
+      margin-bottom: 32px;
+      transition: all 0.3s;
+    }
+
+    .step-line.completed {
+      background: #16a34a;
     }
 
     .contact-form {
@@ -292,6 +582,10 @@ import { LanguageService } from '../../services/language.service';
       border: 1px solid #e2e8f0;
       border-radius: 12px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-step {
+      min-height: 400px;
     }
 
     .form-row {
@@ -338,6 +632,58 @@ import { LanguageService } from '../../services/language.service';
       box-shadow: 0 0 0 3px rgba(41, 82, 204, 0.08);
     }
 
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 15px;
+      background: white;
+      color: #1e293b;
+      transition: all 0.3s;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23334155' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    textarea::placeholder {
+      color: #9ca3af;
+    }
+
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #2952cc;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(41, 82, 204, 0.08);
+    }
+
+    select.error,
+    textarea.error {
+      border: 1px solid #dc2626;
+      background: #fef2f2;
+    }
+
+    select.error:focus,
+    textarea.error:focus {
+      background: #fee;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+    }
+
     .phone-input-wrapper {
       display: flex;
       align-items: center;
@@ -354,7 +700,7 @@ import { LanguageService } from '../../services/language.service';
       gap: 4px;
       background: none;
       border: none;
-      padding: 10px 12px;
+      padding: 16px 12px;
       cursor: pointer;
       color: #6b7280;
       font-size: 14px;
@@ -372,7 +718,6 @@ import { LanguageService } from '../../services/language.service';
       background: transparent;
       padding: 16px 0;
       flex: 1;
-      border: none;
     }
 
     .phone-input-wrapper input:focus {
@@ -506,8 +851,16 @@ import { LanguageService } from '../../services/language.service';
       box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
     }
 
+    .form-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .back-btn,
+    .next-btn,
     .submit-btn {
-      width: 100%;
+      flex: 1;
       background: #2952cc;
       color: white;
       border: none;
@@ -521,12 +874,25 @@ import { LanguageService } from '../../services/language.service';
       transition: all 0.3s;
     }
 
+    .back-btn {
+      background: #64748b;
+    }
+
+    .back-btn:hover {
+      background: #475569;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
+    }
+
+    .next-btn:hover,
     .submit-btn:hover {
       background: #1e3a8a;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(41, 82, 204, 0.3);
     }
 
+    .back-btn:focus-visible,
+    .next-btn:focus-visible,
     .submit-btn:focus-visible {
       outline: 2px solid #2952cc;
       outline-offset: 4px;
@@ -644,6 +1010,29 @@ import { LanguageService } from '../../services/language.service';
         grid-template-columns: 1fr;
       }
 
+      .step-indicator {
+        padding: 0 10px;
+      }
+
+      .step-line {
+        width: 40px;
+        margin: 0 8px;
+      }
+
+      .step-label {
+        font-size: 11px;
+      }
+
+      .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+
+      .form-step {
+        min-height: 320px;
+      }
+
       .info-grid {
         grid-template-columns: 1fr;
       }
@@ -667,15 +1056,29 @@ export class ContactPageComponent {
   private languageService = inject(LanguageService);
   t = this.languageService.getTranslations.bind(this.languageService);
 
+  currentStep = 1;
+  totalSteps = 3;
+
   formData = {
     firstName: '',
     lastName: '',
-    address: '',
     email: '',
     phone: '',
-    income: '',
-    employeeDetails: '',
-    experience: ''
+    dateOfBirth: '',
+    nationality: '',
+    street: '',
+    city: '',
+    state: '',
+    pincode: '',
+    country: '',
+    annualIncome: '',
+    employmentStatus: '',
+    employer: '',
+    occupation: '',
+    yearsOfExperience: '',
+    tradingKnowledge: '',
+    investmentGoals: '',
+    riskTolerance: ''
   };
 
   formErrors: any = {};
@@ -761,14 +1164,43 @@ export class ContactPageComponent {
     this.countrySearchTerm = '';
   }
 
+  nextStep() {
+    this.formErrors = {};
+    this.showError = false;
+
+    if (this.currentStep === 1 && !this.validateStep1()) {
+      this.showError = true;
+      this.errorMessage = 'Please fill in all required fields correctly.';
+      return;
+    }
+
+    if (this.currentStep === 2 && !this.validateStep2()) {
+      this.showError = true;
+      this.errorMessage = 'Please fill in all address fields correctly.';
+      return;
+    }
+
+    if (this.currentStep < this.totalSteps) {
+      this.currentStep++;
+    }
+  }
+
+  previousStep() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+      this.showError = false;
+      this.formErrors = {};
+    }
+  }
+
   onSubmit() {
     this.formErrors = {};
     this.showError = false;
     this.showSuccess = false;
 
-    if (!this.validateForm()) {
+    if (!this.validateStep3()) {
       this.showError = true;
-      this.errorMessage = 'Please fill in all required fields correctly.';
+      this.errorMessage = 'Please fill in all trading experience fields.';
       return;
     }
 
@@ -782,7 +1214,145 @@ export class ContactPageComponent {
 
     setTimeout(() => {
       this.showSuccess = false;
+      this.currentStep = 1;
+      this.formData = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        dateOfBirth: '',
+        nationality: '',
+        street: '',
+        city: '',
+        state: '',
+        pincode: '',
+        country: '',
+        annualIncome: '',
+        employmentStatus: '',
+        employer: '',
+        occupation: '',
+        yearsOfExperience: '',
+        tradingKnowledge: '',
+        investmentGoals: '',
+        riskTolerance: ''
+      };
     }, 5000);
+  }
+
+  validateStep1(): boolean {
+    let isValid = true;
+
+    if (!this.formData.firstName.trim()) {
+      this.formErrors.firstName = 'First name is required';
+      isValid = false;
+    }
+
+    if (!this.formData.lastName.trim()) {
+      this.formErrors.lastName = 'Last name is required';
+      isValid = false;
+    }
+
+    if (!this.formData.email.trim()) {
+      this.formErrors.email = 'Email is required';
+      isValid = false;
+    } else if (!this.isValidEmail(this.formData.email)) {
+      this.formErrors.email = 'Please enter a valid email address';
+      isValid = false;
+    }
+
+    if (!this.formData.phone.trim()) {
+      this.formErrors.phone = 'Phone number is required';
+      isValid = false;
+    }
+
+    if (!this.formData.dateOfBirth.trim()) {
+      this.formErrors.dateOfBirth = 'Date of birth is required';
+      isValid = false;
+    }
+
+    if (!this.formData.nationality.trim()) {
+      this.formErrors.nationality = 'Nationality is required';
+      isValid = false;
+    }
+
+    return isValid;
+  }
+
+  validateStep2(): boolean {
+    let isValid = true;
+
+    if (!this.formData.street.trim()) {
+      this.formErrors.street = 'Street address is required';
+      isValid = false;
+    }
+
+    if (!this.formData.city.trim()) {
+      this.formErrors.city = 'City is required';
+      isValid = false;
+    }
+
+    if (!this.formData.state.trim()) {
+      this.formErrors.state = 'State/Province is required';
+      isValid = false;
+    }
+
+    if (!this.formData.pincode.trim()) {
+      this.formErrors.pincode = 'Pincode/ZIP code is required';
+      isValid = false;
+    }
+
+    if (!this.formData.country.trim()) {
+      this.formErrors.country = 'Country is required';
+      isValid = false;
+    }
+
+    return isValid;
+  }
+
+  validateStep3(): boolean {
+    let isValid = true;
+
+    if (!this.formData.annualIncome.trim()) {
+      this.formErrors.annualIncome = 'Annual income is required';
+      isValid = false;
+    }
+
+    if (!this.formData.employmentStatus) {
+      this.formErrors.employmentStatus = 'Employment status is required';
+      isValid = false;
+    }
+
+    if (!this.formData.employer.trim()) {
+      this.formErrors.employer = 'Employer/Company is required';
+      isValid = false;
+    }
+
+    if (!this.formData.occupation.trim()) {
+      this.formErrors.occupation = 'Occupation is required';
+      isValid = false;
+    }
+
+    if (!this.formData.yearsOfExperience) {
+      this.formErrors.yearsOfExperience = 'Years of experience is required';
+      isValid = false;
+    }
+
+    if (!this.formData.tradingKnowledge) {
+      this.formErrors.tradingKnowledge = 'Trading knowledge level is required';
+      isValid = false;
+    }
+
+    if (!this.formData.investmentGoals.trim()) {
+      this.formErrors.investmentGoals = 'Investment goals are required';
+      isValid = false;
+    }
+
+    if (!this.formData.riskTolerance) {
+      this.formErrors.riskTolerance = 'Risk tolerance is required';
+      isValid = false;
+    }
+
+    return isValid;
   }
 
   validateForm(): boolean {
