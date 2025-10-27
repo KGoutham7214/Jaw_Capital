@@ -7,6 +7,7 @@ export interface Translations {
     whatWeDo: string;
     aboutUs: string;
     results: string;
+    resources: string;
     contactUs: string;
   };
   hero: {
@@ -69,6 +70,7 @@ export class LanguageService {
         whatWeDo: 'What we do',
         aboutUs: 'About us',
         results: 'Results',
+        resources: 'Resources',
         contactUs: 'Contact us'
       },
       hero: {
@@ -123,6 +125,7 @@ export class LanguageService {
         whatWeDo: 'Qué hacemos',
         aboutUs: 'Sobre nosotros',
         results: 'Resultados',
+        resources: 'Recursos',
         contactUs: 'Contáctenos'
       },
       hero: {
