@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../services/language.service';
 import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 interface Resource {
   label: string;
@@ -35,7 +36,25 @@ interface StockData {
       </div>
 
       <div class="container content">
-        <section class="stocks-section">
+       <h2 class="section-title" >{{ lang() === 'en' ? 'Market Resources' : 'Recursos del Mercado' }}</h2>
+        <div class="resources-grid">
+          <a *ngFor="let resource of resources"
+             [href]="resource.url"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="resource-card">
+            <div class="resource-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </div>
+            <h2>{{ lang() === 'en' ? resource.label : resource.labelEs }}</h2>
+            <p>{{ lang() === 'en' ? resource.description : resource.descriptionEs }}</p>
+          </a>
+        </div>
+        <section class="stocks-section" style="margin-top: 80px;">
           <h2 class="section-title">{{ lang() === 'en' ? 'Stocks We Trade' : 'Acciones que Negociamos' }}</h2>
           <p class="section-description">
             {{ lang() === 'en'
@@ -47,7 +66,6 @@ interface StockData {
             <div *ngFor="let stock of stocks()" class="stock-card" (click)="openModal(stock)">
               <div class="stock-header">
                 <h3>{{ stock.symbol }}</h3>
-                <span class="stock-badge">{{ stock.symbol === 'TQQQ' ? 'LONG' : 'SHORT' }}</span>
               </div>
 
               <div *ngIf="stock.loading" class="stock-loading">
@@ -87,7 +105,6 @@ interface StockData {
             <div *ngIf="selectedStock()" class="modal-body">
               <div class="modal-header">
                 <h2>{{ selectedStock()!.symbol }}</h2>
-                <span class="stock-badge large">{{ selectedStock()!.symbol === 'TQQQ' ? 'LONG' : 'SHORT' }}</span>
               </div>
 
               <div class="modal-price-section">
@@ -102,25 +119,6 @@ interface StockData {
               </div>
             </div>
           </div>
-        </div>
-
-        <h2 class="section-title" style="margin-top: 80px;">{{ lang() === 'en' ? 'Market Resources' : 'Recursos del Mercado' }}</h2>
-        <div class="resources-grid">
-          <a *ngFor="let resource of resources"
-             [href]="resource.url"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="resource-card">
-            <div class="resource-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-            </div>
-            <h2>{{ lang() === 'en' ? resource.label : resource.labelEs }}</h2>
-            <p>{{ lang() === 'en' ? resource.description : resource.descriptionEs }}</p>
-          </a>
         </div>
       </div>
     </div>
@@ -232,7 +230,7 @@ interface StockData {
     .section-title {
       font-size: clamp(28px, 4vw, 36px);
       font-weight: 700;
-      margin: 0 0 12px 0;
+      margin: 0 0 16px 0;
       color: #1a1a1a;
       letter-spacing: -0.5px;
     }
@@ -593,51 +591,65 @@ export class ResourcesPageComponent implements OnInit {
     }
   }
 
-  private async fetchStockData() {
-    const symbols = ['TQQQ', 'SQQQ'];
-    const supabaseUrl = 'https://xzewhcgipfrfmkplojkj.supabase.co';
+// at top of file
 
-    for (let i = 0; i < symbols.length; i++) {
-      const symbol = symbols[i];
 
-      try {
-        const response: any = await this.http.get(
-          `${supabaseUrl}/functions/v1/get-stock-data?symbol=${symbol}`
-        ).toPromise();
+private async fetchStockData() {
+  const symbols = ['SOXS', 'TSLL', 'SQQQ', 'TSLZ', 'NVDQ', 'QQQ', 'SPY', 'MSTU', 'SOXL', 'TSLS', 'TSLY', 'IBIT', 'JDST', 'TQQQ', 'TZA', 'IONZ', 'NVD', 'ULTY', 'ETHA', 'LQD', 'ETHD', 'XLF', 'HYG', 'DUST', 'SLV'];
+  const apiKey = 'YNw4Ywb56SJzZvwQfjqLpg==kTlwrn83cloUWcUn'; // ⚠️ Move this to environment.ts for safety
+  const baseUrl = 'https://api.api-ninjas.com/v1/stockprice?ticker=';
 
-        const currentPrice = response.price;
-        const change = response.change;
-        const changePercent = response.changePercent;
+  for (let i = 0; i < symbols.length; i++) {
+    const symbol = symbols[i];
 
-        const chartUrl = `https://finviz.com/chart.ashx?t=${symbol}&ty=c&ta=1&p=d&s=l`;
+    try {
+      const response: any = await this.http
+        .get(baseUrl + symbol, {
+          headers: { 'X-Api-Key': apiKey },
+        })
+        .toPromise();
 
-        this.stocks.update(stocks => {
-          const newStocks = [...stocks];
-          newStocks[i] = {
-            symbol,
-            price: currentPrice.toFixed(2),
-            change: (change >= 0 ? '+' : '') + change.toFixed(2),
-            changePercent: (change >= 0 ? '+' : '') + changePercent.toFixed(2) + '%',
-            chartUrl,
-            loading: false,
-            error: false
-          };
-          return newStocks;
-        });
-      } catch (error) {
-        console.error(`Error fetching ${symbol}:`, error);
-        this.stocks.update(stocks => {
-          const newStocks = [...stocks];
-          newStocks[i] = {
-            ...newStocks[i],
-            loading: false,
-            error: true
-          };
-          return newStocks;
-        });
-      }
+      console.log('API Ninjas response for', symbol, response);
+
+      const currentPrice = response.price;
+      const name = response.name || symbol;
+      const exchange = response.exchange || '-';
+      const currency = response.currency || 'USD';
+      const updated = response.updated
+        ? new Date(response.updated * 1000).toLocaleTimeString()
+        : '—';
+
+      const chartUrl = `https://finviz.com/chart.ashx?t=${symbol}&ty=c&ta=1&p=d&s=l`;
+
+       this.stocks.update(stocks => {
+        const newStocks = [...stocks];
+        newStocks[i] = {
+          symbol,
+          price: currentPrice?.toFixed(2) ?? '-',
+          chartUrl,
+          change: '—', // not available in API Ninjas basic endpoint
+          changePercent: '—',
+          loading: false,
+          error: false,
+        };
+        return newStocks;
+      });
+    }catch (error) {
+      console.error(`Error fetching ${symbol}:`, error);
+      this.stocks.update(stocks => {
+        const newStocks = [...stocks];
+        newStocks[i] = {
+          ...newStocks[i],
+          loading: false,
+          error: true,
+        };
+        return newStocks;
+      });
     }
   }
+}
+
+
 
   resources: Resource[] = [
     {
