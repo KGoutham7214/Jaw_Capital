@@ -28,7 +28,7 @@ import { LanguageService } from '../../services/language.service';
   `,
   styles: [`
     .hero {
-      padding: 120px 24px 160px;
+      padding: 46px 24px 46px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -109,7 +109,7 @@ import { LanguageService } from '../../services/language.service';
       }
 
       .hero {
-        padding: 60px 24px 80px;
+        padding: 26px 24px 46px;
       }
     }
   `]

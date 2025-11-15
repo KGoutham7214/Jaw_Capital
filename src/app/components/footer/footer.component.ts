@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `
     <footer class="footer" role="contentinfo">
       <div class="container">
@@ -81,7 +82,7 @@ import { LanguageService } from '../../services/language.service';
           <div class="bottom-content">
             <p class="copyright">{{ t().footer.copyright }}</p>
             <div class="footer-legal">
-              <a href="#">Privacy Policy</a>
+              <a routerLink="/privacy-policy">Privacy Policy</a>
               <span class="separator">|</span>
               <a href="#">Terms of Service</a>
               <span class="separator">|</span>

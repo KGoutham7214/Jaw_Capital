@@ -12,8 +12,15 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
       <div class="container">
         <h2 class="section-title" appScrollAnimation animationClass="fade-in-up">{{ t().results.title }}</h2>
         <p class="subtitle" appScrollAnimation animationClass="fade-in-up" [animationDelay]="100">
-          Our system is built around flexibility. By using a mix of proven strategies, technical indicators, and a hedge position.
+          {{ t().results.subtitle }}
         </p>
+
+        <div class="key-points" appScrollAnimation animationClass="fade-in-up" [animationDelay]="150">
+          <div class="point-item" *ngFor="let point of keyPoints">
+            <div class="point-icon">✓</div>
+            <p class="point-text">{{ point }}</p>
+          </div>
+        </div>
 
         <div class="timeline" role="list">
           <div
@@ -87,7 +94,54 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
     .subtitle {
       font-size: clamp(14px, 1.2vw, 18px);
       color: var(--text-secondary);
-      margin: 0 0 56px 0;
+      margin: 0 0 40px 0;
+    }
+
+    .key-points {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    .point-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 20px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .point-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .key-points .point-icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+      font-weight: bold;
+    }
+
+    .key-points .point-text {
+      margin: 0;
+      flex: 1;
+      color: var(--text-primary);
+      font-size: clamp(14px, 1.1vw, 17px);
+      line-height: 1.6;
+      font-weight: 400;
     }
 
     .timeline {
@@ -130,6 +184,7 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
       transition: all 0.4s ease;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-left:12px;
     }
 
     .timeline-item:hover .image-placeholder {
@@ -252,6 +307,12 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
         padding: 0 24px;
       }
 
+      .key-points {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 40px;
+      }
+
       .timeline-header {
         gap: 16px;
         padding: 20px 0;
@@ -264,6 +325,7 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
       .details-grid {
         grid-template-columns: 1fr;
         gap: 16px;
+        margin-left:12px
       }
     }
   `]
@@ -271,6 +333,13 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
 export class ResultsComponent {
   private languageService = inject(LanguageService);
   t = this.languageService.getTranslations.bind(this.languageService);
+
+  keyPoints = [
+    'Delivered exceptional investment returns by combining strategic market positioning with disciplined risk control.',
+    'Successfully diversified portfolios across multiple asset classes and market sectors',
+    'Implemented advanced technical analysis systems to enhance trade timing and execution precision',
+    'Maintained consistent performance with minimal drawdowns, even during periods of high market volatility'
+  ];
 
   timelineItems = [
     {

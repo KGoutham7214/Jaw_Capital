@@ -74,8 +74,8 @@ export class LanguageService {
         contactUs: 'Contact us'
       },
       hero: {
-        title: 'Disciplined Trading\nQuantified Results',
-        subtitle: '"Built on over a decade of independent active trading and quantitative precision."',
+        title: 'JAW Capital Management',
+        subtitle: 'JAW Capital Management proudly introduces the first-ever automated daily hedge fund trading system — a breakthrough in modern investing. Our proprietary platform harnesses advanced algorithms and real-time market analytics to trade daily with precision and discipline. Designed to capture short-term opportunities while minimizing risk, this system blends the power of automation with proven hedge fund strategies. Backed by over a decade of hands-on market experience, it delivers consistent, data-driven performance in both bullish and bearish environments. At JAW Capital Management, innovation meets execution — redefining what\'s possible in automated trading.',
         ctaButton: 'Contact us'
       },
       whatWeDo: {
@@ -129,8 +129,8 @@ export class LanguageService {
         contactUs: 'Contáctenos'
       },
       hero: {
-        title: 'Trading Disciplinado\nResultados Cuantificados',
-        subtitle: '"Construido sobre más de una década de trading activo independiente y precisión cuantitativa."',
+        title: 'JAW Capital Management',
+        subtitle: 'JAW Capital Management presenta con orgullo el primer sistema automatizado de trading diario de fondos de cobertura — un avance revolucionario en la inversión moderna. Nuestra plataforma propietaria aprovecha algoritmos avanzados y análisis de mercado en tiempo real para operar diariamente con precisión y disciplina. Diseñado para capturar oportunidades a corto plazo mientras minimiza el riesgo, este sistema combina el poder de la automatización con estrategias probadas de fondos de cobertura. Respaldado por más de una década de experiencia práctica en el mercado, ofrece un rendimiento consistente y basado en datos tanto en entornos alcistas como bajistas. En JAW Capital Management, la innovación se encuentra con la ejecución — redefiniendo lo que es posible en el trading automatizado.',
         ctaButton: 'Contáctenos'
       },
       whatWeDo: {

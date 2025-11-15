@@ -31,42 +31,53 @@ import { ThemeService } from '../../services/theme.service';
           <a routerLink="/resources" (click)="closeMobileMenu()">{{ t().header.resources }}</a>
           <a routerLink="/contact" (click)="closeMobileMenu()">{{ t().header.contactUs }}</a>
 
-          <div class="language-dropdown mobile-language">
+          <div class="mobile-controls">
             <button
-              class="language-btn"
-              (click)="toggleDropdown()"
-              [attr.aria-label]="t().ariaLabels.languageSelector"
-              [attr.aria-expanded]="isDropdownOpen()"
+              class="theme-toggle mobile-theme"
+              (click)="toggleTheme()"
+              [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
               type="button"
             >
-              {{ lang().toUpperCase() }} <span class="arrow" aria-hidden="true">▼</span>
+              <span class="theme-icon">{{ themeService.isDarkMode() ? '☀️' : '🌙' }}</span>
             </button>
-            <div class="dropdown-menu" *ngIf="isDropdownOpen()" role="menu">
+
+            <div class="language-dropdown mobile-language">
               <button
-                class="dropdown-item"
-                [class.active]="lang() === 'en'"
-                (click)="selectLanguage('en')"
+                class="language-btn"
+                (click)="toggleDropdown()"
+                [attr.aria-label]="t().ariaLabels.languageSelector"
+                [attr.aria-expanded]="isDropdownOpen()"
                 type="button"
-                role="menuitem"
               >
-                EN - English
+                {{ lang().toUpperCase() }} <span class="arrow" aria-hidden="true">▼</span>
               </button>
-              <button
-                class="dropdown-item"
-                [class.active]="lang() === 'es'"
-                (click)="selectLanguage('es')"
-                type="button"
-                role="menuitem"
-              >
-                ES - Español
-              </button>
+              <div class="dropdown-menu" *ngIf="isDropdownOpen()" role="menu">
+                <button
+                  class="dropdown-item"
+                  [class.active]="lang() === 'en'"
+                  (click)="selectLanguage('en')"
+                  type="button"
+                  role="menuitem"
+                >
+                  EN - English
+                </button>
+                <button
+                  class="dropdown-item"
+                  [class.active]="lang() === 'es'"
+                  (click)="selectLanguage('es')"
+                  type="button"
+                  role="menuitem"
+                >
+                  ES - Español
+                </button>
+              </div>
             </div>
           </div>
         </nav>
 
         <div class="header-controls">
           <button
-            class="theme-toggle"
+            class="theme-toggle desktop-theme"
             (click)="toggleTheme()"
             [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
             type="button"
@@ -143,6 +154,7 @@ import { ThemeService } from '../../services/theme.service';
       display: flex;
       align-items: center;
       transition: all 0.3s ease;
+      color: var(--text-primary);
     }
 
     .text-only {
@@ -307,6 +319,7 @@ import { ThemeService } from '../../services/theme.service';
       cursor: pointer;
       padding: 8px;
       z-index: 101;
+      margin-left: auto;
     }
 
     .hamburger {
@@ -359,6 +372,18 @@ import { ThemeService } from '../../services/theme.service';
       display: none;
     }
 
+    .desktop-theme {
+      display: flex;
+    }
+
+    .mobile-theme {
+      display: none;
+    }
+
+    .mobile-controls {
+      display: none;
+    }
+
     @media (max-width: 768px) {
       .container {
         padding: 0 24px;
@@ -372,11 +397,25 @@ import { ThemeService } from '../../services/theme.service';
         display: none;
       }
 
-      .mobile-language {
-        display: block;
+      .desktop-theme {
+        display: none;
+      }
+
+      .mobile-controls {
+        display: flex;
+        gap: 12px;
         margin-top: 16px;
         padding-top: 16px;
-        border-top: 1px solid #e0e0e0;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .mobile-language {
+        display: block;
+        flex: 1;
+      }
+
+      .mobile-theme {
+        display: flex;
       }
 
       .nav {

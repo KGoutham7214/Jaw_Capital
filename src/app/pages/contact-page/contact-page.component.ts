@@ -97,11 +97,14 @@ import { LanguageService } from '../../services/language.service';
               </div>
               <div class="form-group">
                 <label for="phone">Phone Number *</label>
-                <div class="phone-input-wrapper" [class.error]="formErrors.phone">
-                  <div class="country-selector-container">
-                    <button type="button" class="country-selector" (click)="toggleCountryDropdown()" aria-label="Select country code">
+                <div class="phone-input-group" [class.error]="formErrors.phone">
+                  <div class="country-code-selector">
+                    <button type="button" class="country-code-btn" (click)="toggleCountryDropdown()" aria-label="Select country code">
                       <span class="flag">{{ selectedCountry.flag }}</span>
-                      <span class="arrow">▼</span>
+                      <span class="code">{{ selectedCountry.code }}</span>
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron" [class.rotated]="showCountryDropdown">
+                        <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
                     </button>
                     <div class="country-dropdown" *ngIf="showCountryDropdown" role="menu">
                       <div class="country-search">
@@ -684,49 +687,89 @@ import { LanguageService } from '../../services/language.service';
       box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
     }
 
-    .phone-input-wrapper {
+    .phone-input-group {
       display: flex;
       align-items: center;
-      gap: 8px;
       background: var(--bg-primary);
       border: 1px solid var(--border-color);
       border-radius: 6px;
-      padding-right: 16px;
+      padding: 0;
+      transition: all 0.2s ease;
+      position: relative;
     }
 
-    .country-selector {
+    .phone-input-group:focus-within {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(41, 82, 204, 0.08);
+    }
+
+    .phone-input-group.error {
+      border-color: #dc2626;
+    }
+
+    .country-code-selector {
+      position: relative;
+    }
+
+    .country-code-btn {
       display: flex;
       align-items: center;
-      gap: 4px;
-      background: none;
+      gap: 6px;
+      background: transparent;
       border: none;
-      padding: 16px 12px;
+      border-right: 1px solid var(--border-color);
+      padding: 14px 12px;
       cursor: pointer;
-      color: var(--text-muted);
+      color: var(--text-primary);
       font-size: 14px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .country-code-btn:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .country-code-btn:focus {
+      outline: none;
+      background: rgba(0, 0, 0, 0.03);
     }
 
     .flag {
-      font-size: 20px;
+      font-size: 18px;
+      line-height: 1;
     }
 
-    .arrow {
-      font-size: 10px;
+    .code {
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 500;
+      min-width: 36px;
     }
 
-    .phone-input-wrapper input {
-      background: transparent;
-      padding: 16px 0;
+    .chevron {
+      color: var(--text-secondary);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .chevron.rotated {
+      transform: rotate(180deg);
+    }
+
+    .phone-input-group input[type="tel"] {
       flex: 1;
-    }
-
-    .phone-input-wrapper input:focus {
       background: transparent;
-      box-shadow: none;
+      border: none;
+      padding: 16px 16px;
+      font-size: 14px;
+      color: var(--text-primary);
+      outline: none;
+      min-width: 0;
     }
 
-    .country-selector-container {
-      position: relative;
+    .phone-input-group input[type="tel"]::placeholder {
+      color: var(--text-muted);
     }
 
     .country-dropdown {
@@ -843,6 +886,7 @@ import { LanguageService } from '../../services/language.service';
     }
 
     input.error {
+      border: 1px solid #dc2626;
       background: #fef2f2;
     }
 
@@ -935,16 +979,16 @@ import { LanguageService } from '../../services/language.service';
     .info-item {
       text-align: center;
       padding: 48px 32px;
-      background: white;
+      background: var(--bg-primary);
       border-radius: 16px;
-      border: 1px solid #e5e7eb;
+      border: 1px solid var(--border-color);
       transition: all 0.3s;
     }
 
     .info-item:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      border-color: #d1d5db;
+      border-color: var(--accent-primary);
     }
 
     .icon-wrapper {
@@ -986,13 +1030,13 @@ import { LanguageService } from '../../services/language.service';
       font-size: 16px;
       font-weight: 600;
       margin: 0 0 8px 0;
-      color: #1a1a1a;
+      color: var(--text-primary);
       letter-spacing: -0.2px;
     }
 
     .info-item p {
       font-size: 15px;
-      color: #6b7280;
+      color: var(--text-secondary);
       margin: 0;
       line-height: 1.6;
     }
@@ -1193,7 +1237,7 @@ export class ContactPageComponent {
     }
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.formErrors = {};
     this.showError = false;
     this.showSuccess = false;
@@ -1204,39 +1248,77 @@ export class ContactPageComponent {
       return;
     }
 
-    console.log('Form submitted:', {
-      ...this.formData,
-      countryCode: this.selectedCountry.code
-    });
+    try {
+      const supabaseUrl = 'https://xzewhcgipfrfmkplojkj.supabase.co';
+      const apiUrl = `${supabaseUrl}/functions/v1/send-contact-email`;
 
-    this.showSuccess = true;
-    this.successMessage = 'Thank you! Your message has been sent successfully.';
-
-    setTimeout(() => {
-      this.showSuccess = false;
-      this.currentStep = 1;
-      this.formData = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        dateOfBirth: '',
-        nationality: '',
-        street: '',
-        city: '',
-        state: '',
-        pincode: '',
-        country: '',
-        annualIncome: '',
-        employmentStatus: '',
-        employer: '',
-        occupation: '',
-        yearsOfExperience: '',
-        tradingKnowledge: '',
-        investmentGoals: '',
-        riskTolerance: ''
+      const submissionData = {
+        firstName: this.formData.firstName,
+        lastName: this.formData.lastName,
+        email: this.formData.email,
+        phone: this.formData.phone,
+        countryCode: this.selectedCountry.code,
+        dateOfBirth: this.formData.dateOfBirth,
+        ssn: this.formData.nationality,
+        addressLine1: this.formData.street,
+        addressLine2: '',
+        city: this.formData.city,
+        state: this.formData.state,
+        zipCode: this.formData.pincode,
+        country: this.formData.country,
+        tradingExperience: this.formData.tradingKnowledge,
+        brokerName: this.formData.employer,
+        accountSize: this.formData.annualIncome,
+        goals: this.formData.investmentGoals
       };
-    }, 5000);
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit form');
+      }
+
+      this.showSuccess = true;
+      this.successMessage = 'Thank you! Your message has been sent successfully.';
+
+      setTimeout(() => {
+        this.showSuccess = false;
+        this.currentStep = 1;
+        this.formData = {
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          dateOfBirth: '',
+          nationality: '',
+          street: '',
+          city: '',
+          state: '',
+          pincode: '',
+          country: '',
+          annualIncome: '',
+          employmentStatus: '',
+          employer: '',
+          occupation: '',
+          yearsOfExperience: '',
+          tradingKnowledge: '',
+          investmentGoals: '',
+          riskTolerance: ''
+        };
+      }, 5000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      this.showError = true;
+      this.errorMessage = 'Failed to submit form. Please try again.';
+    }
   }
 
   validateStep1(): boolean {
