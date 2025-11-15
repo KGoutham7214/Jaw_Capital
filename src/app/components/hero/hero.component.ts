@@ -81,7 +81,7 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .cta-button {
-      background: #2952cc;
+      background: var(--accent-primary);
       color: #ffffff;
       border: none;
       padding: 16px 48px;
@@ -93,13 +93,13 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .cta-button:hover {
-      background: #1e3a8a;
+      background: var(--accent-hover);
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(41, 82, 204, 0.4);
     }
 
     .cta-button:focus-visible {
-      outline: 2px solid #2952cc;
+      outline: 2px solid var(--accent-primary);
       outline-offset: 4px;
     }
 

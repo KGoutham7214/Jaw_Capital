@@ -68,7 +68,7 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
   `,
   styles: [`
     .results {
-      background: white;
+      background: var(--bg-primary);
       padding: 80px 24px 20px 24px;
     }
 
@@ -81,12 +81,12 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
       font-size: clamp(28px, 3vw, 48px);
       font-weight: 400;
       margin: 0 0 24px 0;
-      color: #1a1a1a;
+      color: var(--text-primary);
     }
 
     .subtitle {
       font-size: clamp(14px, 1.2vw, 18px);
-      color: #4a4a4a;
+      color: var(--text-secondary);
       margin: 0 0 56px 0;
     }
 
@@ -98,7 +98,7 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
 
     .timeline-item {
       transition: all 0.3s;
-      background: white;
+      background: var(--bg-secondary);
       margin-bottom: 8px;
       border-radius: 8px;
     }
@@ -163,13 +163,13 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
     .year {
       font-size: clamp(28px, 2.5vw, 42px);
       font-weight: 400;
-      color: #1a1a1a;
+      color: var(--text-primary);
       margin: 0 0 8px 0;
     }
 
     .category {
       font-size: clamp(14px, 1.2vw, 20px);
-      color: #1a1a1a;
+      color: var(--text-primary);
       margin: 0;
     }
 
@@ -178,7 +178,7 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
       border: none;
       cursor: pointer;
       padding: 8px;
-      color: #1a1a1a;
+      color: var(--text-primary);
       transition: all 0.3s;
       border-radius: 50%;
       display: flex;
@@ -197,17 +197,17 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
     }
 
     .expand-btn:hover {
-      background: #f0f0f0;
+      background: var(--bg-tertiary);
     }
 
     .expand-btn:focus-visible {
-      outline: 2px solid #2952cc;
+      outline: 2px solid var(--accent-primary);
       outline-offset: 2px;
     }
 
     .details {
       padding: 0 0 24px 203px;
-      color: #4a4a4a;
+      color: var(--text-secondary);
       font-size: 14px;
       line-height: 1.6;
     }

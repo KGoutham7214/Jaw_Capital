@@ -20,7 +20,7 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
   `,
   styles: [`
     .about {
-      background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+      background: var(--bg-secondary);
       padding: 80px 24px;
       position: relative;
     }
@@ -46,13 +46,13 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
       font-size: clamp(28px, 3vw, 48px);
       font-weight: 400;
       margin: 0 0 32px 0;
-      color: #1a1a1a;
+      color: var(--text-primary);
     }
 
     .description {
       font-size: clamp(16px, 1.3vw, 20px);
       line-height: 1.8;
-      color: #4a4a4a;
+      color: var(--text-secondary);
       margin: 0;
     }
 

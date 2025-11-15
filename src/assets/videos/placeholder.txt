@@ -1,0 +1,10 @@
+Place your background video file here (e.g., hero-background.mp4)
+
+Recommended video specifications:
+- Format: MP4 (H.264 codec)
+- Resolution: 1920x1080 or higher
+- Duration: 10-30 seconds (looping works best with shorter videos)
+- File size: Keep under 5MB for web performance
+- Aspect ratio: 16:9
+
+Replace the placeholder path in hero.component.ts with your actual video filename.

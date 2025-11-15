@@ -35,7 +35,7 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
   `,
   styles: [`
     .why-different {
-      background: #f8f9fb;
+      background: var(--bg-secondary);
       padding: 80px 24px;
       position: relative;
       overflow: hidden;
@@ -64,7 +64,7 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
       font-size: clamp(28px, 3vw, 48px);
       font-weight: 400;
       margin: 0 0 40px 0;
-      color: #1a1a1a;
+      color: var(--text-primary);
     }
 
     .content-block {
@@ -75,7 +75,7 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
       font-size: clamp(16px, 1.4vw, 22px);
       line-height: 1.8;
       margin: 0;
-      color: #1a1a1a;
+      color: var(--text-primary);
       font-weight: 500;
     }
 
@@ -83,7 +83,7 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
       font-size: clamp(14px, 1.2vw, 18px);
       line-height: 1.8;
       margin: 0;
-      color: #4a4a4a;
+      color: var(--text-secondary);
     }
 
     .cta-section {
@@ -92,7 +92,7 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
     }
 
     .contact-btn {
-      background: #2952cc;
+      background: var(--accent-primary);
       color: white;
       border: none;
       padding: 16px 56px;
@@ -104,13 +104,13 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
     }
 
     .contact-btn:hover {
-      background: #1e3a8a;
+      background: var(--accent-hover);
       transform: translateY(-2px) scale(1.02);
       box-shadow: 0 6px 20px rgba(41, 82, 204, 0.4);
     }
 
     .contact-btn:focus-visible {
-      outline: 2px solid #2952cc;
+      outline: 2px solid var(--accent-primary);
       outline-offset: 4px;
     }
 

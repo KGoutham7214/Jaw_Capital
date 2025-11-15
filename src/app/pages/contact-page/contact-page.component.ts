@@ -482,7 +482,7 @@ import { LanguageService } from '../../services/language.service';
 
     .contact-form-section {
       padding: 80px 24px;
-      background: white;
+      background: var(--bg-primary);
     }
 
     .container {
@@ -496,14 +496,14 @@ import { LanguageService } from '../../services/language.service';
       font-weight: 300;
       text-align: center;
       margin: 0 0 8px 0;
-      color: #2952cc;
+      color: var(--accent-primary);
     }
 
     .form-subtitle {
       font-size: 16px;
       text-align: center;
       margin: 0 0 32px 0;
-      color: #64748b;
+      color: var(--text-secondary);
       font-weight: 400;
     }
 
@@ -526,8 +526,8 @@ import { LanguageService } from '../../services/language.service';
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      background: #e2e8f0;
-      color: #94a3b8;
+      background: var(--bg-tertiary);
+      color: var(--text-muted);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -537,7 +537,7 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .step.active .step-number {
-      background: #2952cc;
+      background: var(--accent-primary);
       color: white;
     }
 
@@ -549,13 +549,13 @@ import { LanguageService } from '../../services/language.service';
     .step-label {
       font-size: 13px;
       font-weight: 500;
-      color: #94a3b8;
+      color: var(--text-muted);
       text-align: center;
       transition: all 0.3s;
     }
 
     .step.active .step-label {
-      color: #2952cc;
+      color: var(--accent-primary);
       font-weight: 600;
     }
 
@@ -566,7 +566,7 @@ import { LanguageService } from '../../services/language.service';
     .step-line {
       width: 80px;
       height: 2px;
-      background: #e2e8f0;
+      background: var(--border-light);
       margin: 0 12px;
       margin-bottom: 32px;
       transition: all 0.3s;
@@ -577,11 +577,11 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .contact-form {
-      background: #fafbfc;
+      background: var(--bg-secondary);
       padding: 48px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--border-light);
       border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-sm);
     }
 
     .form-step {
@@ -604,7 +604,7 @@ import { LanguageService } from '../../services/language.service';
       font-size: 13px;
       font-weight: 600;
       margin-bottom: 8px;
-      color: #334155;
+      color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
@@ -612,23 +612,23 @@ import { LanguageService } from '../../services/language.service';
     input {
       width: 100%;
       padding: 14px 16px;
-      border: 1px solid #cbd5e1;
+      border: 1px solid var(--border-color);
       border-radius: 6px;
       font-size: 15px;
-      background: white;
-      color: #1e293b;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       transition: all 0.3s;
       box-sizing: border-box;
     }
 
     input::placeholder {
-      color: #9ca3af;
+      color: var(--text-muted);
     }
 
     input:focus {
       outline: none;
-      border-color: #2952cc;
-      background: white;
+      border-color: var(--accent-primary);
+      background: var(--bg-primary);
       box-shadow: 0 0 0 3px rgba(41, 82, 204, 0.08);
     }
 
@@ -636,11 +636,11 @@ import { LanguageService } from '../../services/language.service';
     textarea {
       width: 100%;
       padding: 14px 16px;
-      border: 1px solid #cbd5e1;
+      border: 1px solid var(--border-color);
       border-radius: 6px;
       font-size: 15px;
-      background: white;
-      color: #1e293b;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       transition: all 0.3s;
       box-sizing: border-box;
       font-family: inherit;
@@ -661,14 +661,14 @@ import { LanguageService } from '../../services/language.service';
     }
 
     textarea::placeholder {
-      color: #9ca3af;
+      color: var(--text-muted);
     }
 
     select:focus,
     textarea:focus {
       outline: none;
-      border-color: #2952cc;
-      background: white;
+      border-color: var(--accent-primary);
+      background: var(--bg-primary);
       box-shadow: 0 0 0 3px rgba(41, 82, 204, 0.08);
     }
 
@@ -688,8 +688,8 @@ import { LanguageService } from '../../services/language.service';
       display: flex;
       align-items: center;
       gap: 8px;
-      background: white;
-      border: 1px solid #cbd5e1;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
       border-radius: 6px;
       padding-right: 16px;
     }
@@ -702,7 +702,7 @@ import { LanguageService } from '../../services/language.service';
       border: none;
       padding: 16px 12px;
       cursor: pointer;
-      color: #6b7280;
+      color: var(--text-muted);
       font-size: 14px;
     }
 
@@ -718,7 +718,6 @@ import { LanguageService } from '../../services/language.service';
       background: transparent;
       padding: 16px 0;
       flex: 1;
-      border:none;
     }
 
     .phone-input-wrapper input:focus {
@@ -734,10 +733,10 @@ import { LanguageService } from '../../services/language.service';
       position: absolute;
       top: calc(100% + 4px);
       left: 0;
-      background: white;
-      border: 1px solid #d0d0d0;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: var(--shadow-md);
       width: 280px;
       max-height: 320px;
       overflow: hidden;
@@ -748,23 +747,23 @@ import { LanguageService } from '../../services/language.service';
 
     .country-search {
       padding: 12px;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid var(--border-light);
     }
 
     .search-input {
       width: 100%;
       padding: 8px 12px;
-      border: 1px solid #d0d0d0;
+      border: 1px solid var(--border-color);
       border-radius: 4px;
       font-size: 14px;
-      background: white;
+      background: var(--bg-primary);
     }
 
     .search-input:focus {
       outline: none;
-      border-color: #2952cc;
+      border-color: var(--accent-primary);
       box-shadow: 0 0 0 2px rgba(41, 82, 204, 0.1);
-      background: white;
+      background: var(--bg-primary);
     }
 
     .country-list {
@@ -787,7 +786,7 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .country-item:hover {
-      background-color: #f0f3ff;
+      background-color: var(--bg-tertiary);
     }
 
     .country-flag {
@@ -797,11 +796,11 @@ import { LanguageService } from '../../services/language.service';
 
     .country-name {
       flex: 1;
-      color: #1a1a1a;
+      color: var(--text-primary);
     }
 
     .country-code {
-      color: #6b7280;
+      color: var(--text-muted);
       font-weight: 500;
     }
 
@@ -862,7 +861,7 @@ import { LanguageService } from '../../services/language.service';
     .next-btn,
     .submit-btn {
       flex: 1;
-      background: #2952cc;
+      background: var(--accent-primary);
       color: white;
       border: none;
       padding: 16px 32px;
@@ -887,7 +886,7 @@ import { LanguageService } from '../../services/language.service';
 
     .next-btn:hover,
     .submit-btn:hover {
-      background: #1e3a8a;
+      background: var(--accent-hover);
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(41, 82, 204, 0.3);
     }
@@ -895,13 +894,13 @@ import { LanguageService } from '../../services/language.service';
     .back-btn:focus-visible,
     .next-btn:focus-visible,
     .submit-btn:focus-visible {
-      outline: 2px solid #2952cc;
+      outline: 2px solid var(--accent-primary);
       outline-offset: 4px;
     }
 
     .contact-info-section {
       padding: 100px 24px;
-      background: #f9fafb;
+      background: var(--bg-secondary);
     }
 
     .container-wide {
@@ -914,7 +913,7 @@ import { LanguageService } from '../../services/language.service';
       font-weight: 300;
       text-align: center;
       margin: 0 0 60px 0;
-      color: #1a1a1a;
+      color: var(--text-primary);
       letter-spacing: -0.5px;
     }
 

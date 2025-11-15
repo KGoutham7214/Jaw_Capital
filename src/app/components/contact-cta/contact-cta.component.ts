@@ -81,8 +81,8 @@ import { ScrollAnimationDirective } from '../../directives/scroll-animation.dire
     }
 
     .contact-btn {
-      background: white;
-      color: #2952cc;
+      background: var(--bg-primary);
+      color: var(--accent-primary);
       border: none;
       padding: 16px 40px;
       font-size: clamp(14px, 1.2vw, 18px);

@@ -63,8 +63,9 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
   `,
   styles: [`
     .what-we-do-page {
-      background: linear-gradient(rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.97)), url('https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+      background: var(--bg-secondary);
       padding: 120px 24px 80px;
+      min-height: calc(100vh - 200px);
       position: relative;
     }
 
@@ -103,7 +104,7 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
       font-size: 40px;
       font-weight: 400;
       margin: 0;
-      color: #1a1a1a;
+      color: var(--text-primary);
     }
 
     .description-block {
@@ -114,7 +115,7 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
       font-size: 14px;
       line-height: 1.8;
       margin: 0;
-      color: #4a4a4a;
+      color: var(--text-secondary);
       text-align: justify;
     }
 
@@ -133,7 +134,7 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
       height: 400px;
       overflow: hidden;
       border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      box-shadow: var(--shadow-lg);
     }
 
     .carousel-image {
@@ -168,7 +169,7 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: #d0d0d0;
+      background: var(--border-color);
       border: none;
       cursor: pointer;
       padding: 0;
@@ -176,17 +177,17 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
     }
 
     .dot:hover {
-      background: #a0a0a0;
+      background: var(--text-muted);
     }
 
     .dot.active {
-      background: #1a1a1a;
+      background: var(--text-primary);
       width: 12px;
       height: 12px;
     }
 
     .dot:focus-visible {
-      outline: 2px solid #2952cc;
+      outline: 2px solid var(--accent-primary);
       outline-offset: 4px;
     }
 
