@@ -861,16 +861,45 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .success-message {
-      background: #efe;
-      border: 1px solid #cfc;
-      border-radius: 6px;
-      padding: 12px 16px;
-      margin-bottom: 20px;
-      color: #3c3;
-      font-size: 14px;
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      border: 2px solid #10b981;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      color: #065f46;
+      font-size: 15px;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+      animation: slideDown 0.4s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-message::before {
+      content: '✓';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #10b981;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      flex-shrink: 0;
     }
 
     .field-error {
@@ -878,11 +907,6 @@ import { LanguageService } from '../../services/language.service';
       color: #dc2626;
       font-size: 12px;
       margin-top: 4px;
-    }
-
-    input.error,
-    .phone-input-wrapper.error {
-      border: 1px solid #dc2626;
     }
 
     input.error {
@@ -1287,7 +1311,9 @@ export class ContactPageComponent {
       }
 
       this.showSuccess = true;
-      this.successMessage = 'Thank you! Your message has been sent successfully.';
+      this.successMessage = 'Thank you! Your information has been submitted successfully. We will contact you soon.';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       setTimeout(() => {
         this.showSuccess = false;
@@ -1313,7 +1339,7 @@ export class ContactPageComponent {
           investmentGoals: '',
           riskTolerance: ''
         };
-      }, 5000);
+      }, 8000);
     } catch (error) {
       console.error('Error submitting form:', error);
       this.showError = true;

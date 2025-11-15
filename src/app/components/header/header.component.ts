@@ -123,7 +123,7 @@ import { ThemeService } from '../../services/theme.service';
   styles: [`
     .header {
       background: var(--bg-primary);
-      padding: 24px 0;
+      padding: 12px 0;
       box-shadow: var(--shadow-sm);
       position: sticky;
       top: 0;
