@@ -20,6 +20,11 @@ export interface Translations {
     title: string;
     description: string;
   };
+  whatWeDoPage: {
+    title: string;
+    description1: string;
+    description2: string;
+  };
   results: {
     title: string;
     subtitle: string;
@@ -84,6 +89,11 @@ export class LanguageService {
         title: 'What We Offer',
         description: 'At JAW Capital Management, we have dedicated over a decade to mastering the art of day trading in the stock market. Over the years, our team has refined a disciplined approach that combines multiple strategies, advanced indicators, and carefully structured hedge positions. This approach allows us to remain flexible and profitable, whether the market is trending upward or experiencing a downturn. By relying on carefully calculated metrics, we are able to effectively hedge against risk and protect our capital, ensuring long-term stability in an often unpredictable environment. It is also important to note that JAW Capital Management operates as a private firm, meaning we do not manage or accept outside funds. Instead, we focus exclusively on growing and preserving our own capital through proven strategies and risk-managed decision-making.'
       },
+      whatWeDoPage: {
+        title: 'What We Do',
+        description1: 'Our IT team has engineered a secure system that integrates seamlessly with client brokerage accounts. Installation of our program on your brokerage account is completed via Microsoft Teams, ensuring that we never request or store your account credentials. Following the formal agreement, our team will handle implementation and ongoing maintenance of the program. Clients are also kept informed of any recommended modifications to optimize performance.',
+        description2: 'Our team has designed an automated trading program focused on leveraged ETFs, built upon our proven day trading strategies and supported by extensive quantitative research. The program has undergone rigorous back-testing over several years, demonstrating consistent performance that mirrors our live trading success. A summary of this back-testing data has been provided for your review.'
+      },
       results: {
         title: 'Results',
         subtitle: 'Our system is built for flexibility, combining a mix of proven trading strategies, advanced technical indicators, and a structured hedge position to adapt to any market condition.',
@@ -139,6 +149,11 @@ export class LanguageService {
       whatWeDo: {
         title: 'Qué Ofrecemos',
         description: 'Nuestro sistema está construido en torno a la flexibilidad. Al usar una combinación de estrategias probadas, indicadores técnicos y una colisión matemática, podemos aprovechar las oportunidades ya sea que el mercado esté subiendo o bajando. Cada movimiento que hacemos es calculado, asegurando que nos mantengamos adelante del juego y entreguemos los resultados que buscamos en los mercados que hemos trabajado duro para entender y predecir.'
+      },
+      whatWeDoPage: {
+        title: 'Qué Hacemos',
+        description1: 'Nuestro equipo de TI ha diseñado un sistema seguro que se integra perfectamente con las cuentas de corretaje de los clientes. La instalación de nuestro programa en su cuenta de corretaje se completa a través de Microsoft Teams, asegurando que nunca solicitemos ni almacenemos sus credenciales de cuenta. Después del acuerdo formal, nuestro equipo se encargará de la implementación y el mantenimiento continuo del programa. Los clientes también se mantienen informados de cualquier modificación recomendada para optimizar el rendimiento.',
+        description2: 'Nuestro equipo ha diseñado un programa de trading automatizado enfocado en ETFs apalancados, construido sobre nuestras estrategias de day trading probadas y respaldado por una extensa investigación cuantitativa. El programa ha sido sometido a rigurosas pruebas retrospectivas durante varios años, demostrando un rendimiento consistente que refleja nuestro éxito en trading en vivo. Se ha proporcionado un resumen de estos datos de pruebas retrospectivas para su revisión.'
       },
       results: {
         title: 'Resultados',

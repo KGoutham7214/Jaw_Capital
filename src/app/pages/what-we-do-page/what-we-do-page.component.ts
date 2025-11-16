@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ScrollAnimationDirective } from '../../directives/scroll-animation.directive';
 import { FeeStructureComponent } from '../../components/fee-structure/fee-structure.component';
 import { WhyDifferentComponent } from '../../components/why-different/why-different.component';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-what-we-do-page',
@@ -14,15 +15,15 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
       <div class="container">
         <div class="content-grid">
           <div class="text-content">
-            <h1 class="page-title">What We Do</h1>
+            <h1 class="page-title">{{ t().whatWeDoPage.title }}</h1>
             <div class="description-block">
               <p class="description">
-                Our IT team has engineered a secure system that integrates seamlessly with client brokerage accounts. Installation of our program on your brokerage account is completed via Microsoft Teams, ensuring that we never request or store your account credentials. Following the formal agreement, our team will handle implementation and ongoing maintenance of the program. Clients are also kept informed of any recommended modifications to optimize performance.
+                {{ t().whatWeDoPage.description1 }}
               </p>
             </div>
             <div class="description-block">
               <p class="description">
-                Our team has designed an automated trading program focused on leveraged ETFs, built upon our proven day trading strategies and supported by extensive quantitative research. The program has undergone rigorous back-testing over several years, demonstrating consistent performance that mirrors our live trading success. A summary of this back-testing data has been provided for your review.
+                {{ t().whatWeDoPage.description2 }}
               </p>
             </div>
           </div>
@@ -223,7 +224,10 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
   `]
 })
 export class WhatWeDoPageComponent {
+  private languageService = inject(LanguageService);
+
   currentImageIndex = signal(0);
+  t = computed(() => this.languageService.getTranslations());
 
   carouselImages = [
     { label: 'Office Building', src: 'assets/what-we-do/building.jpg' },
