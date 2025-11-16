@@ -12,6 +12,7 @@ export interface Translations {
   };
   hero: {
     title: string;
+    tagline: string;
     subtitle: string;
     ctaButton: string;
   };
@@ -67,7 +68,7 @@ export class LanguageService {
   private translations: Record<Language, Translations> = {
     en: {
       header: {
-        whatWeDo: 'What we do',
+        whatWeDo: 'What we offer',
         aboutUs: 'About us',
         results: 'Results',
         resources: 'Resources',
@@ -75,11 +76,12 @@ export class LanguageService {
       },
       hero: {
         title: 'JAW Capital Management',
+        tagline: 'Finally, everyday investors can access the power of hedge fund–style leveraged trading.',
         subtitle: 'JAW Capital Management proudly introduces the first-ever automated daily hedge fund trading system — a breakthrough in modern investing. Our proprietary platform harnesses advanced algorithms and real-time market analytics to trade daily with precision and discipline. Designed to capture short-term opportunities while minimizing risk, this system blends the power of automation with proven hedge fund strategies. Backed by over a decade of hands-on market experience, it delivers consistent, data-driven performance in both bullish and bearish environments. At JAW Capital Management, innovation meets execution — redefining what\'s possible in automated trading.',
         ctaButton: 'Contact us'
       },
       whatWeDo: {
-        title: 'What We Do',
+        title: 'What We Offer',
         description: 'At JAW Capital Management, we have dedicated over a decade to mastering the art of day trading in the stock market. Over the years, our team has refined a disciplined approach that combines multiple strategies, advanced indicators, and carefully structured hedge positions. This approach allows us to remain flexible and profitable, whether the market is trending upward or experiencing a downturn. By relying on carefully calculated metrics, we are able to effectively hedge against risk and protect our capital, ensuring long-term stability in an often unpredictable environment. It is also important to note that JAW Capital Management operates as a private firm, meaning we do not manage or accept outside funds. Instead, we focus exclusively on growing and preserving our own capital through proven strategies and risk-managed decision-making.'
       },
       results: {
@@ -90,7 +92,7 @@ export class LanguageService {
       },
       about: {
         title: 'About us',
-        description: 'At JAW, you\'re in the backseat. Trading isn\'t just a skill, it\'s an art form we\'ve been passionate about for more than 10 years. Over that time, we\'ve learned how to adapt to the stock market\'s ups and downs, developing a style of day trading that helps us stay consistent no matter what direction things move in.'
+        description: 'At JAW, you\'re in the backseat. Trading isn\'t just a skill to us—it\'s an art we\'ve perfected over more than a decade. Through years of navigating the market\'s highs and lows, we\'ve developed a disciplined day-trading approach designed to stay consistent regardless of market direction'
       },
       contact: {
         title: 'Contact us',
@@ -122,7 +124,7 @@ export class LanguageService {
     },
     es: {
       header: {
-        whatWeDo: 'Qué hacemos',
+        whatWeDo: 'Qué ofrecemos',
         aboutUs: 'Sobre nosotros',
         results: 'Resultados',
         resources: 'Recursos',
@@ -130,11 +132,12 @@ export class LanguageService {
       },
       hero: {
         title: 'JAW Capital Management',
+        tagline: 'Finalmente, los inversores cotidianos pueden acceder al poder del trading apalancado al estilo de fondos de cobertura.',
         subtitle: 'JAW Capital Management presenta con orgullo el primer sistema automatizado de trading diario de fondos de cobertura — un avance revolucionario en la inversión moderna. Nuestra plataforma propietaria aprovecha algoritmos avanzados y análisis de mercado en tiempo real para operar diariamente con precisión y disciplina. Diseñado para capturar oportunidades a corto plazo mientras minimiza el riesgo, este sistema combina el poder de la automatización con estrategias probadas de fondos de cobertura. Respaldado por más de una década de experiencia práctica en el mercado, ofrece un rendimiento consistente y basado en datos tanto en entornos alcistas como bajistas. En JAW Capital Management, la innovación se encuentra con la ejecución — redefiniendo lo que es posible en el trading automatizado.',
         ctaButton: 'Contáctenos'
       },
       whatWeDo: {
-        title: 'Qué Hacemos',
+        title: 'Qué Ofrecemos',
         description: 'Nuestro sistema está construido en torno a la flexibilidad. Al usar una combinación de estrategias probadas, indicadores técnicos y una colisión matemática, podemos aprovechar las oportunidades ya sea que el mercado esté subiendo o bajando. Cada movimiento que hacemos es calculado, asegurando que nos mantengamos adelante del juego y entreguemos los resultados que buscamos en los mercados que hemos trabajado duro para entender y predecir.'
       },
       results: {

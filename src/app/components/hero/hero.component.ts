@@ -16,9 +16,11 @@ import { LanguageService } from '../../services/language.service';
       <div class="hero-overlay"></div>
       <div class="container">
         <h1 class="title" appScrollAnimation animationClass="fade-in-up">
-          {{ t().hero.title.split('\\n')[0] }}<br>
-          {{ t().hero.title.split('\\n')[1] }}
+          {{ t().hero.title }}
         </h1>
+        <p class="tagline" appScrollAnimation animationClass="fade-in-up" [animationDelay]="50">
+          {{ t().hero.tagline }}
+        </p>
         <p class="subtitle" appScrollAnimation animationClass="fade-in-up" [animationDelay]="100">
           {{ t().hero.subtitle }}
         </p>
@@ -71,6 +73,14 @@ import { LanguageService } from '../../services/language.service';
       margin: 0 0 32px 0;
       color: #ffffff;
       letter-spacing: -0.5px;
+    }
+
+    .tagline {
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.4;
+      color: #f0f0f0;
+      margin: 0 auto 32px;
+      font-weight: 300;
     }
 
     .subtitle {

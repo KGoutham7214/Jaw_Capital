@@ -17,7 +17,7 @@ import { WhyDifferentComponent } from '../../components/why-different/why-differ
             <h1 class="page-title">What We Do</h1>
             <div class="description-block">
               <p class="description">
-                Our IT team has engineered a secure system that integrates seamlessly with client brokerage accounts. Installation is completed via Microsoft Teams, ensuring that we never request or store your account credentials. Following the formal agreement, our team will handle implementation and ongoing maintenance of the program. Clients are also kept informed of any recommended modifications to optimize performance.
+                Our IT team has engineered a secure system that integrates seamlessly with client brokerage accounts. Installation of our program on your brokerage account is completed via Microsoft Teams, ensuring that we never request or store your account credentials. Following the formal agreement, our team will handle implementation and ongoing maintenance of the program. Clients are also kept informed of any recommended modifications to optimize performance.
               </p>
             </div>
             <div class="description-block">
