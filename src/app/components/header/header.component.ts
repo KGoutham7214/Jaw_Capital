@@ -34,15 +34,6 @@ import { ThemeService } from '../../services/theme.service';
           <a routerLink="/contact" (click)="closeMobileMenu()">{{ t().header.contactUs }}</a>
 
           <div class="mobile-controls">
-            <button
-              class="theme-toggle mobile-theme"
-              (click)="toggleTheme()"
-              [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
-              type="button"
-            >
-              <span class="theme-icon">{{ themeService.isDarkMode() ? '☀️' : '🌙' }}</span>
-            </button>
-
             <div class="language-dropdown mobile-language">
               <button
                 class="language-btn"
@@ -78,15 +69,6 @@ import { ThemeService } from '../../services/theme.service';
         </nav>
 
         <div class="header-controls">
-          <button
-            class="theme-toggle desktop-theme"
-            (click)="toggleTheme()"
-            [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
-            type="button"
-          >
-            <span class="theme-icon">{{ themeService.isDarkMode() ? '☀️' : '🌙' }}</span>
-          </button>
-
           <div class="language-dropdown desktop-language">
             <button
               class="language-btn"
@@ -121,6 +103,16 @@ import { ThemeService } from '../../services/theme.service';
         </div>
       </div>
     </header>
+
+    <button
+      class="floating-theme-toggle"
+      (click)="toggleTheme()"
+      [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+      type="button"
+      [title]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+    >
+      <span class="theme-icon">{{ themeService.isDarkMode() ? '☀️' : '🌙' }}</span>
+    </button>
   `,
   styles: [`
     .header {
@@ -284,34 +276,51 @@ import { ThemeService } from '../../services/theme.service';
       gap: 12px;
     }
 
-    .theme-toggle {
-      background: var(--bg-primary);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      padding: 10px 14px;
+    .floating-theme-toggle {
+      position: fixed;
+      bottom: 32px;
+      left: 32px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      border: none;
       cursor: pointer;
-      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 48px;
-      height: 44px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
     }
 
-    .theme-toggle:hover {
-      border-color: var(--accent-primary);
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px rgba(41, 82, 204, 0.15);
+    :host-context(.dark-mode) .floating-theme-toggle {
+      background: #1e3a8a;
     }
 
-    .theme-toggle:focus-visible {
-      outline: 2px solid #2952cc;
+    .floating-theme-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(41, 82, 204, 0.3);
+      background: var(--accent-hover);
+    }
+
+    :host-context(.dark-mode) .floating-theme-toggle:hover {
+      background: #1e40af;
+    }
+
+    .floating-theme-toggle:active {
+      transform: scale(0.95);
+    }
+
+    .floating-theme-toggle:focus-visible {
+      outline: 3px solid var(--accent-primary);
       outline-offset: 4px;
     }
 
-    .theme-icon {
-      font-size: 20px;
+    .floating-theme-toggle .theme-icon {
+      font-size: 24px;
       line-height: 1;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
     }
 
     .mobile-menu-btn {
@@ -416,8 +425,15 @@ import { ThemeService } from '../../services/theme.service';
         flex: 1;
       }
 
-      .mobile-theme {
-        display: flex;
+      .floating-theme-toggle {
+        bottom: 24px;
+        left: 24px;
+        width: 52px;
+        height: 52px;
+      }
+
+      .floating-theme-toggle .theme-icon {
+        font-size: 22px;
       }
 
       .nav {
