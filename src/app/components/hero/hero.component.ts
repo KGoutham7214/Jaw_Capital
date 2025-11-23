@@ -34,6 +34,7 @@ import { LanguageService } from '../../services/language.service';
       text-align: center;
       position: relative;
       overflow: hidden;
+      min-height: calc(100vh - 64px);
     }
 
     .hero-video {
