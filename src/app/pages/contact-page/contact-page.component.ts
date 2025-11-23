@@ -493,6 +493,11 @@ import { LanguageService } from '../../services/language.service';
       margin: 0 auto;
       padding: 0 40px;
     }
+    @media (max-width: 500px) {
+      .container {
+        padding: 0;   /* Remove padding below 500px */
+      }
+    }
 
     .form-title {
       font-size: 36px;
