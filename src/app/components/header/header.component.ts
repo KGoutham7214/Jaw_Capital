@@ -13,12 +13,10 @@ import { ThemeService } from '../../services/theme.service';
       <div class="container">
         <div class="logo-container">
           <a routerLink="/" class="logo" aria-label="JAW Logo">
-            <img *ngIf="themeService.isDarkMode()" src="assets/final_logo_dark_icon_only.png" alt="JAW Capital Management" />
-            <img *ngIf="!themeService.isDarkMode()" src="assets/final_logo_only.png" alt="JAW Capital Management" />
+            <img *ngIf="themeService.isDarkMode()" src="assets/darkmode-1-bg.png" alt="JAW Capital Management" />
           </a>
           <a routerLink="/" class="logo text-only" aria-label="JAW Logo">
-            <img *ngIf="!themeService.isDarkMode()" src="assets/final_logo_text_only.png" alt="JAW Capital Management" />
-            <img *ngIf="themeService.isDarkMode()" src="assets/final_logo_dark_text_only.png" alt="JAW Capital Management" />
+            <img *ngIf="!themeService.isDarkMode()" src="assets/normal-1.png" alt="JAW Capital Management" />
           </a>
         </div>
 
